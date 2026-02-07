@@ -457,9 +457,9 @@ input[type="radio"]:checked::before {
   background: var(--cta-blue);
   /* iFoundIt CTA gradient */
   background: linear-gradient(180deg, var(--cta-blue) 0%, var(--cta-hover) 100%);
-  color: #FFFFFF;
+  color: var(--bg-dark);
   font-family: var(--font-heading);
-  font-weight: 600;
+  font-weight: 700;
   padding: 8px 16px;
   border-radius: 6px;
   /* Tech radius */
