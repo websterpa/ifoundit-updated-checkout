@@ -31,11 +31,39 @@
   --transition-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* Base Theme: Modern White */
+.theme-base {
+  --bg-dark: #FFFFFF;
+  --bg-gradient-start: #FFFFFF;
+  --bg-gradient-end: #F8F9FA;
+  /* Reusing light gray from Steel */
+
+  --text-main: #0B162C;
+  /* Reusing Midnight Blue */
+  --text-body: #1E3A5F;
+  /* Reusing Panel Blue */
+  --text-muted: #6C757D;
+  /* Reusing Steel Primary */
+
+  --glass-surface: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(11, 22, 44, 0.1);
+  /* Derived from text-main */
+  --glass-highlight: rgba(11, 22, 44, 0.05);
+
+  --panel-blue: #F0F4F8;
+  /* Light gray/blue hint */
+  --decorative: #E9ECEF;
+  /* Steel bg */
+
+  /* Accents preserved */
+  --primary: #3DB7E4;
+  --primary-glow: rgba(61, 183, 228, 0.2);
+  --accent-teal: #3DB7E4;
+}
+
+/* Theme: Ocean Blue Serenity */
 /* Theme: Ocean Blue Serenity */
 [data-theme="ocean"] {
-  --bg-dark: #03045E;
-  --bg-gradient-start: #03045E;
-  --bg-gradient-end: #023E8A;
   --primary: #00B4D8;
   --primary-glow: rgba(0, 180, 216, 0.5);
   --primary-dim: rgba(0, 180, 216, 0.1);
@@ -43,21 +71,11 @@
   --cta-hover: #00B4D8;
   --accent-teal: #0096C7;
   --accent-purple: #0077B6;
-  --glass-surface: rgba(2, 62, 138, 0.6);
-  --glass-border: rgba(0, 180, 216, 0.2);
-  --glass-highlight: rgba(255, 255, 255, 0.1);
-  --text-main: #FFFFFF;
-  --text-body: #CAF0F8;
-  --text-muted: #90E0EF;
-  --panel-blue: #023E8A;
-  --decorative: #0077B6;
 }
 
 /* Theme: Arctic Steel */
+/* Theme: Arctic Steel */
 [data-theme="steel"] {
-  --bg-dark: #E9ECEF;
-  --bg-gradient-start: #F8F9FA;
-  --bg-gradient-end: #DEE2E6;
   --primary: #6C757D;
   --primary-glow: rgba(108, 117, 125, 0.5);
   --primary-dim: rgba(108, 117, 125, 0.1);
@@ -65,21 +83,11 @@
   --cta-hover: #343A40;
   --accent-teal: #6C757D;
   --accent-purple: #ADB5BD;
-  --glass-surface: rgba(173, 181, 189, 0.4);
-  --glass-border: rgba(108, 117, 125, 0.3);
-  --glass-highlight: rgba(255, 255, 255, 0.5);
-  --text-main: #212529;
-  --text-body: #495057;
-  --text-muted: #6C757D;
-  --panel-blue: #CED4DA;
-  --decorative: #ADB5BD;
 }
 
 /* Theme: Sunset Professional */
+/* Theme: Sunset Professional */
 [data-theme="sunset"] {
-  --bg-dark: #010D1A;
-  --bg-gradient-start: #010D1A;
-  --bg-gradient-end: #102E46;
   --primary: #6286A6;
   --primary-glow: rgba(98, 134, 166, 0.5);
   --primary-dim: rgba(98, 134, 166, 0.1);
@@ -87,21 +95,11 @@
   --cta-hover: #102E46;
   --accent-teal: #18ADDC;
   --accent-purple: #2B82E4;
-  --glass-surface: rgba(16, 46, 70, 0.6);
-  --glass-border: rgba(98, 134, 166, 0.2);
-  --glass-highlight: rgba(255, 255, 255, 0.1);
-  --text-main: #D5DAE0;
-  --text-body: #9D6B52;
-  --text-muted: #4C6B7F;
-  --panel-blue: #102E46;
-  --decorative: #2B82E4;
 }
 
 /* Theme: Charcoal Depths */
+/* Theme: Charcoal Depths */
 [data-theme="charcoal"] {
-  --bg-dark: #030B13;
-  --bg-gradient-start: #030B13;
-  --bg-gradient-end: #18ADDC;
   --primary: #58FCED;
   --primary-glow: rgba(88, 252, 237, 0.5);
   --primary-dim: rgba(88, 252, 237, 0.1);
@@ -109,14 +107,6 @@
   --cta-hover: #2B82E4;
   --accent-teal: #58FCED;
   --accent-purple: #2B82E4;
-  --glass-surface: rgba(24, 173, 220, 0.15);
-  --glass-border: rgba(88, 252, 237, 0.2);
-  --glass-highlight: rgba(255, 255, 255, 0.1);
-  --text-main: #FFFFFF;
-  --text-body: #4C6B7F;
-  --text-muted: #6A8DA1;
-  --panel-blue: #18ADDC;
-  --decorative: #2B82E4;
 }
 
 * {
