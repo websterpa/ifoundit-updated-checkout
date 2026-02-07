@@ -19,9 +19,9 @@ import { EVENTS } from './analytics.contract';
 import { UX_COPY } from './copy';
 
 // Check initial implicit state
-if (state.tagCapacity === 1 && Object.keys(state.selectedTags).length === 0) {
+if (Object.keys(state.selectedTags).length === 0) {
   trackEvent(EVENTS.FREE_HALO_IMPLICIT_APPLIED, {
-    capacity: 1,
+    capacity: state.tagCapacity,
     tagType: 'halo'
   });
 }
@@ -32,7 +32,7 @@ const tagTypesGrid = document.getElementById('tag-types-grid')!;
 const currentSelectionCounter = document.getElementById('current-selection-count')!;
 const maxCapacityCounter = document.getElementById('max-capacity-count')!;
 const summaryTagItems = document.getElementById('summary-tag-items')!;
-const summaryCredits = document.getElementById('summary-credits')!;
+
 const summaryBoltOnItems = document.getElementById('summary-bolt-on-items')!;
 const summaryBasePlan = document.getElementById('summary-base-plan-cost')!;
 const summaryTagsSubtotal = document.getElementById('summary-tags-subtotal')!;
@@ -66,7 +66,7 @@ function renderTagTypes() {
           <h3>${tag.name}</h3>
           <p>${tag.descriptor}</p>
         </div>
-        ${state.tagCapacity === 1 && tag.id === 'halo' ? `<div class="included-label">${UX_COPY.INCLUDED_WITH_FREE}</div>` : ''}
+
         <div class="tag-price-row">
           <span class="tag-unit-price">${formatCurrency(tag.price)}</span>
           <div class="qty-selector">
@@ -104,11 +104,17 @@ function renderTagTypes() {
         state.selectedTags[id] = currentQty + 1;
       } else if (!isIncrement && currentQty > 0) {
         state.selectedTags[id] = currentQty - 1;
-        // If we remove the last tag and are at capacity 1, implicit halo applies
+
+        // Auto-Reinsertion Rule:
+        // If we remove the last tag (total quantity becomes 0),
+        // we must immediately re-insert the baseline Halo tag (qty=1).
         const remainingQty = Object.values(state.selectedTags).reduce((a, b) => a + b, 0);
-        if (state.tagCapacity === 1 && remainingQty === 0) {
+
+        if (remainingQty === 0) {
+          state.selectedTags = { 'halo': 1 };
+
           trackEvent(EVENTS.FREE_HALO_IMPLICIT_APPLIED, {
-            capacity: 1,
+            capacity: state.tagCapacity,
             tagType: 'halo'
           });
         }
@@ -141,7 +147,7 @@ function renderTagTypes() {
 
 // Update UI based on state
 function updateUI() {
-  const { basePlanCost, rawTagsCost, tagItems, freeTagCredit, boltOnItems, addOnsCost, total, totalSelectedQuantity } = calculateTotal(state);
+  const { basePlanCost, rawTagsCost, tagItems, boltOnItems, addOnsCost, total, totalSelectedQuantity } = calculateTotal(state);
 
   // Update counters
   currentSelectionCounter.textContent = totalSelectedQuantity.toString();
@@ -164,13 +170,9 @@ function updateUI() {
     </div>
   `).join('');
 
-  // Update Summary Credits
-  summaryCredits.innerHTML = freeTagCredit > 0 ? `
-    <div class="summary-item credit">
-      <span>Free Tag Credit</span>
-      <span>-${formatCurrency(freeTagCredit)}</span>
-    </div>
-  ` : '';
+
+
+
 
   // Update Summary Bolt-ons
   summaryBoltOnItems.innerHTML = boltOnItems.map(item => `
@@ -181,7 +183,7 @@ function updateUI() {
   `).join('');
 
   summaryBasePlan.textContent = formatCurrency(basePlanCost);
-  summaryTagsSubtotal.textContent = formatCurrency(rawTagsCost - freeTagCredit);
+  summaryTagsSubtotal.textContent = formatCurrency(rawTagsCost);
   summaryAddons.textContent = formatCurrency(addOnsCost);
 
   const formattedTotal = formatCurrency(total);
@@ -231,9 +233,9 @@ function handleChange(event: Event) {
       // Check for Implicit Halo Applied (downgrade or change to 1 with no tags)
       // Note: If we just downgraded to 1, we might have selections, so this only fires if empty.
       const hasSelectionsAfterChange = Object.values(state.selectedTags).some(qty => qty > 0);
-      if (state.tagCapacity === 1 && !hasSelectionsAfterChange) {
+      if (!hasSelectionsAfterChange) {
         trackEvent(EVENTS.FREE_HALO_IMPLICIT_APPLIED, {
-          capacity: 1,
+          capacity: state.tagCapacity,
           tagType: 'halo'
         });
       }
@@ -261,6 +263,13 @@ function init() {
   ctaButton.addEventListener('click', async () => {
     if (ctaButton.disabled) return;
 
+    // Guardrail: Prevent £0 checkout
+    const { total } = calculateTotal(state);
+    if (total <= 0) {
+      console.error("Attempted checkout with £0 total. At least one physical tag is required.");
+      return;
+    }
+
     // Mock processing state
     const originalText = ctaButton.textContent || 'Complete Protection';
     ctaButton.innerHTML = 'Processing... <div class="btn-shine"></div>';
@@ -283,47 +292,24 @@ function init() {
         });
       }
 
-      // Reconstruct tag items with metadata and credit logic
-      let creditApplied = false;
+      // Reconstruct tag items with metadata
       const effectiveSelectedTags = { ...state.selectedTags };
 
       // Implicit selection check (match pricing.ts)
       const hasSelections = Object.values(state.selectedTags).some(qty => qty > 0);
-      if (state.tagCapacity === 1 && !hasSelections) {
+      if (!hasSelections) {
         effectiveSelectedTags['halo'] = 1;
-      }
-
-      // Determine the "first" tag for credit purposes (matching pricing.ts)
-      let freeTagId: string | undefined;
-      if (state.tagCapacity === 1) {
-        freeTagId = Object.keys(effectiveSelectedTags).find(key => effectiveSelectedTags[key] > 0);
       }
 
       PRICING.TAG_TYPES.forEach(tag => {
         const qty = effectiveSelectedTags[tag.id] || 0;
         if (qty > 0) {
-          let paidQty = qty;
-
-          // Apply credit if this is the chosen free tag
-          if (tag.id === freeTagId && !creditApplied) {
-            payloadItems.push({
-              name: `${tag.name} (Included via Plan)`,
-              description: tag.descriptor,
-              amount: 0,
-              quantity: 1
-            });
-            paidQty--;
-            creditApplied = true;
-          }
-
-          if (paidQty > 0) {
-            payloadItems.push({
-              name: tag.name,
-              description: tag.descriptor,
-              amount: tag.price,
-              quantity: paidQty
-            });
-          }
+          payloadItems.push({
+            name: tag.name,
+            description: tag.descriptor,
+            amount: tag.price,
+            quantity: qty
+          });
         }
       });
 

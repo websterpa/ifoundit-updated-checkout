@@ -56,7 +56,6 @@ export function calculateTotal(state: CartState): {
     basePlanCost: number;
     rawTagsCost: number;
     tagItems: { name: string, quantity: number, price: number }[];
-    freeTagCredit: number;
     boltOnItems: { name: string, price: number }[];
     addOnsCost: number;
     total: number;
@@ -65,10 +64,11 @@ export function calculateTotal(state: CartState): {
     const basePlanCost = PRICING.TAGS[state.tagCapacity];
 
     // IMPLICIT SELECTION RULE:
-    // If capacity is 1 AND no tags are explicitly selected, treat it as 1 'Halo' tag.
+    // If no tags are explicitly selected, treat it as 1 'Halo' tag.
+    // This applies to ALL capacities to ensure we never have a £0 / empty basket.
     let effectiveSelectedTags = { ...state.selectedTags };
     const hasSelections = Object.values(state.selectedTags).some(qty => qty > 0);
-    if (state.tagCapacity === 1 && !hasSelections) {
+    if (!hasSelections) {
         effectiveSelectedTags['halo'] = 1;
     }
 
@@ -86,20 +86,7 @@ export function calculateTotal(state: CartState): {
         }
     });
 
-    // Special rule: if capacity == 1, one selected tag is free.
-    let freeTagCredit = 0;
-    if (state.tagCapacity === 1 && totalSelectedQuantity >= 1) {
-        // Find the first selected tag
-        const firstTagId = Object.keys(effectiveSelectedTags).find(key => effectiveSelectedTags[key] > 0);
-        if (firstTagId) {
-            const tag = PRICING.TAG_TYPES.find(t => t.id === firstTagId);
-            if (tag) {
-                freeTagCredit = tag.price;
-            }
-        }
-    }
-
-    const tagsTotalCost = basePlanCost + rawTagsCost - freeTagCredit;
+    const tagsTotalCost = basePlanCost + rawTagsCost;
 
     const finderCost = PRICING.FINDER_REWARDS[state.finderRewards];
     const returnsCost = PRICING.RETURN_CREDITS[state.returnCredits];
@@ -134,7 +121,6 @@ export function calculateTotal(state: CartState): {
         basePlanCost,
         rawTagsCost: parseFloat(rawTagsCost.toFixed(2)),
         tagItems,
-        freeTagCredit: parseFloat(freeTagCredit.toFixed(2)),
         boltOnItems,
         addOnsCost: parseFloat(addOnsCost.toFixed(2)),
         total,

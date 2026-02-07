@@ -3,20 +3,18 @@ import { describe, it, expect } from 'vitest';
 import { calculateTotal, INITIAL_STATE, type CartState } from './pricing';
 
 describe('Pricing Engine', () => {
-    it('should calculate £0.00 for initial state', () => {
+    it('should calculate cost for implicit Halo tag', () => {
         // Initial state capacity is 1. We must select 1 tag for valid state.
         // Base Cost (1): 0.00
         // Tag Cost (1 x 3.99): 3.99
-        // Free Credit: -3.99
-        // Total: 0.00
+        // Total: 3.99
         const state: CartState = {
             ...INITIAL_STATE,
             selectedTags: { 'halo': 1 }
         };
         const result = calculateTotal(state);
-        expect(result.total).toBe(0);
+        expect(result.total).toBe(3.99);
         expect(result.rawTagsCost).toBe(3.99);
-        expect(result.freeTagCredit).toBe(3.99);
         expect(result.addOnsCost).toBe(0);
     });
 
@@ -27,9 +25,8 @@ describe('Pricing Engine', () => {
             selectedTags: {} // Empty
         };
         const result = calculateTotal(state);
-        expect(result.total).toBe(0);
+        expect(result.total).toBe(3.99);
         expect(result.rawTagsCost).toBe(3.99); // Halo price
-        expect(result.freeTagCredit).toBe(3.99);
         expect(result.totalSelectedQuantity).toBe(1);
         expect(result.tagItems[0].name).toContain('Halo');
     });

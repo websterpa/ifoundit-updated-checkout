@@ -5,7 +5,7 @@ import { calculateTotal, INITIAL_STATE, type CartState } from './pricing';
 describe('Pricing Logic Invariants', () => {
 
     describe('When Tag Capacity > 1', () => {
-        it('should NOT apply implicit Halo tag when selectedTags is empty', () => {
+        it('should apply implicit Halo tag when selectedTags is empty', () => {
             const state: CartState = {
                 ...INITIAL_STATE,
                 tagCapacity: 3,
@@ -13,12 +13,13 @@ describe('Pricing Logic Invariants', () => {
             };
             const result = calculateTotal(state);
 
-            // Should verify no tags are added implicitly
-            expect(result.tagItems).toHaveLength(0);
-            expect(result.totalSelectedQuantity).toBe(0);
+            // Should apply 1 Halo implicitly
+            expect(result.tagItems).toHaveLength(1);
+            expect(result.tagItems[0].name).toContain('Halo');
+            expect(result.totalSelectedQuantity).toBe(1);
 
-            // Base cost for 3 tags is 0.99
-            expect(result.total).toBe(0.99);
+            // Base 0.99 + Halo 3.99 = 4.98
+            expect(result.total).toBe(4.98);
         });
 
         it('should require explicit selection for Halo', () => {
@@ -51,13 +52,12 @@ describe('Pricing Logic Invariants', () => {
             expect(result.tagItems[0].name).toContain('Halo');
             expect(result.tagItems[0].quantity).toBe(1);
             expect(result.totalSelectedQuantity).toBe(1);
-            expect(result.total).toBe(0);
+            expect(result.total).toBe(3.99);
         });
 
         it('should NOT implicitly apply Halo if another tag is selected', () => {
             // If user selects Orbit (4.99), it should be the only tag.
-            // Capacity 1 = Free credit applies to first tag.
-            // Base 0 + Tag 4.99 - Credit 4.99 = 0.
+            // Capacity 1 (Base 0) + Tag 4.99 = 4.99.
             const state: CartState = {
                 ...INITIAL_STATE,
                 tagCapacity: 1,
@@ -68,7 +68,7 @@ describe('Pricing Logic Invariants', () => {
             expect(result.tagItems).toHaveLength(1);
             expect(result.tagItems[0].name).toContain('Orbit'); // Not Halo
             expect(result.totalSelectedQuantity).toBe(1);
-            expect(result.total).toBe(0);
+            expect(result.total).toBe(4.99);
         });
     });
 
