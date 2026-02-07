@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmed - iFoundIt</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="/src/style.css">
+</head>
+
+<body>
+    <main class="page-container">
+        <div class="confirmation-card">
+            <div class="success-icon">
+                <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+            </div>
+            <h1 id="status-heading">Order Confirmed!</h1>
+            <p id="status-message">Thank you for your purchase. Your iFoundIt tags are on the way.</p>
+
+            <div class="next-steps">
+                <p>You will receive a confirmation email shortly.</p>
+            </div>
+
+            <div id="action-container" style="margin-top: 2rem;">
+                <a href="/" class="cta-button primary full-width">Return to Home</a>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="/src/confirmation.ts"></script>
+</body>
+
+</html>

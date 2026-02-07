@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "tsc -p tsconfig.build.json && vite build",
     "preview": "vite preview",
     "test": "vitest run src",
     "test:e2e": "playwright test"
@@ -15,5 +15,10 @@
     "typescript": "~5.9.3",
     "vite": "^7.2.4",
     "vitest": "^4.0.18"
+  },
+  "dependencies": {
+    "@netlify/functions": "^5.1.2",
+    "@stripe/stripe-js": "^8.7.0",
+    "stripe": "^20.3.1"
   }
 }

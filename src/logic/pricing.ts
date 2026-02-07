@@ -64,12 +64,20 @@ export function calculateTotal(state: CartState): {
 } {
     const basePlanCost = PRICING.TAGS[state.tagCapacity];
 
+    // IMPLICIT SELECTION RULE:
+    // If capacity is 1 AND no tags are explicitly selected, treat it as 1 'Halo' tag.
+    let effectiveSelectedTags = { ...state.selectedTags };
+    const hasSelections = Object.values(state.selectedTags).some(qty => qty > 0);
+    if (state.tagCapacity === 1 && !hasSelections) {
+        effectiveSelectedTags['halo'] = 1;
+    }
+
     let rawTagsCost = 0;
     let totalSelectedQuantity = 0;
     const tagItems: { name: string, quantity: number, price: number }[] = [];
 
     PRICING.TAG_TYPES.forEach(tag => {
-        const qty = state.selectedTags[tag.id] || 0;
+        const qty = effectiveSelectedTags[tag.id] || 0;
         if (qty > 0) {
             const cost = qty * tag.price;
             rawTagsCost += cost;
@@ -82,7 +90,7 @@ export function calculateTotal(state: CartState): {
     let freeTagCredit = 0;
     if (state.tagCapacity === 1 && totalSelectedQuantity >= 1) {
         // Find the first selected tag
-        const firstTagId = Object.keys(state.selectedTags).find(key => state.selectedTags[key] > 0);
+        const firstTagId = Object.keys(effectiveSelectedTags).find(key => effectiveSelectedTags[key] > 0);
         if (firstTagId) {
             const tag = PRICING.TAG_TYPES.find(t => t.id === firstTagId);
             if (tag) {

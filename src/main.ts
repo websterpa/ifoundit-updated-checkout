@@ -14,6 +14,18 @@ import {
 // Current state
 let state: CartState = { ...INITIAL_STATE };
 
+import { trackEvent } from './analytics';
+import { EVENTS } from './analytics.contract';
+import { UX_COPY } from './copy';
+
+// Check initial implicit state
+if (state.tagCapacity === 1 && Object.keys(state.selectedTags).length === 0) {
+  trackEvent(EVENTS.FREE_HALO_IMPLICIT_APPLIED, {
+    capacity: 1,
+    tagType: 'halo'
+  });
+}
+
 // DOM Elements
 const form = document.getElementById('checkout-form') as HTMLFormElement;
 const tagTypesGrid = document.getElementById('tag-types-grid')!;
@@ -28,6 +40,12 @@ const summaryAddons = document.getElementById('summary-addons-cost')!;
 const summaryTotal = document.getElementById('summary-total')!;
 const stickyTotal = document.getElementById('sticky-total')!;
 const ctaButton = document.getElementById('cta-button') as HTMLButtonElement;
+
+// Inject static helper copy (centralised)
+const tagHelperText = document.getElementById('tag-selection-helper-text');
+if (tagHelperText) {
+  tagHelperText.textContent = UX_COPY.TAG_SELECTION_HELPER;
+}
 
 // Format currency
 const formatCurrency = (amount: number) => `£${amount.toFixed(2)}`;
@@ -48,6 +66,7 @@ function renderTagTypes() {
           <h3>${tag.name}</h3>
           <p>${tag.descriptor}</p>
         </div>
+        ${state.tagCapacity === 1 && tag.id === 'halo' ? `<div class="included-label">${UX_COPY.INCLUDED_WITH_FREE}</div>` : ''}
         <div class="tag-price-row">
           <span class="tag-unit-price">${formatCurrency(tag.price)}</span>
           <div class="qty-selector">
@@ -59,6 +78,16 @@ function renderTagTypes() {
       </div>
     `;
   }).join('');
+
+  // Upgrade Reassurance Note
+  if (state.tagCapacity === 1) {
+    tagTypesGrid.innerHTML += `
+      <div style="grid-column: 1 / -1; margin-top: 16px; font-size: 0.85rem; color: #666; text-align: center; font-style: italic;">
+        ${UX_COPY.UPGRADE_REASSURANCE}
+      </div>
+    `;
+  }
+
 
   // Add event listeners to buttons
   tagTypesGrid.querySelectorAll('.qty-btn').forEach(btn => {
@@ -75,6 +104,34 @@ function renderTagTypes() {
         state.selectedTags[id] = currentQty + 1;
       } else if (!isIncrement && currentQty > 0) {
         state.selectedTags[id] = currentQty - 1;
+        // If we remove the last tag and are at capacity 1, implicit halo applies
+        const remainingQty = Object.values(state.selectedTags).reduce((a, b) => a + b, 0);
+        if (state.tagCapacity === 1 && remainingQty === 0) {
+          trackEvent(EVENTS.FREE_HALO_IMPLICIT_APPLIED, {
+            capacity: 1,
+            tagType: 'halo'
+          });
+        }
+      }
+
+      // Track Tag Mix Selected
+      try {
+        // Filter out zero quantities for cleaner analytics
+        const activeTags = Object.entries(state.selectedTags)
+          .filter(([_, qty]) => qty > 0)
+          .reduce((acc, [k, v]) => ({ ...acc, [k]: v }), {});
+
+        const totalQty = Object.values(state.selectedTags).reduce((a, b) => a + b, 0);
+
+        if (totalQty > 0) {
+          trackEvent(EVENTS.TAG_MIX_SELECTED, {
+            tagTypes: Object.keys(activeTags),
+            quantities: activeTags,
+            totalTagCount: totalQty
+          });
+        }
+      } catch (e) {
+        // Silent fail
       }
 
       updateUI();
@@ -152,9 +209,34 @@ function handleChange(event: Event) {
 
   switch (name) {
     case 'tagCapacity':
-      state.tagCapacity = value as TagCapacity;
-      // When capacity changes, we might need to reset tags if they exceed new capacity?
-      // For now, keep them but updateUI will block checkout.
+      const newCapacity = value as TagCapacity;
+
+      // Transition Rule: 1 -> >1
+      // If we are currently on Capacity 1 AND rely on implicit Halo (no explicit selections),
+      // we must make that Halo explicit so the user starts with 1 Halo selected.
+      const hasExplicitSelections = Object.values(state.selectedTags).some(qty => qty > 0);
+
+      if (state.tagCapacity === 1 && newCapacity > 1 && !hasExplicitSelections) {
+        state.selectedTags = { 'halo': 1 };
+
+        trackEvent(EVENTS.FREE_TO_PAID_UPGRADE, {
+          previousCapacity: 1,
+          newCapacity: newCapacity,
+          preservedTags: { 'halo': 1 }
+        });
+      }
+
+      state.tagCapacity = newCapacity;
+
+      // Check for Implicit Halo Applied (downgrade or change to 1 with no tags)
+      // Note: If we just downgraded to 1, we might have selections, so this only fires if empty.
+      const hasSelectionsAfterChange = Object.values(state.selectedTags).some(qty => qty > 0);
+      if (state.tagCapacity === 1 && !hasSelectionsAfterChange) {
+        trackEvent(EVENTS.FREE_HALO_IMPLICIT_APPLIED, {
+          capacity: 1,
+          tagType: 'halo'
+        });
+      }
       break;
     case 'finderRewards':
       state.finderRewards = value as FinderRewardTier;
@@ -176,25 +258,181 @@ function init() {
     form.addEventListener('change', handleChange);
   }
 
-  ctaButton.addEventListener('click', () => {
+  ctaButton.addEventListener('click', async () => {
     if (ctaButton.disabled) return;
 
     // Mock processing state
-    const originalText = ctaButton.textContent;
+    const originalText = ctaButton.textContent || 'Complete Protection';
     ctaButton.innerHTML = 'Processing... <div class="btn-shine"></div>';
     ctaButton.style.opacity = '0.7';
     ctaButton.setAttribute('disabled', 'true');
 
-    setTimeout(() => {
-      alert(`Order processed for ${formatCurrency(calculateTotal(state).total)}!\nThank you for choosing iFoundIt.`);
-      ctaButton.textContent = originalText;
+    // --- Stripe Integration ---
+    try {
+      // 1. Prepare items from state (using logic/pricing PRICING constant)
+      const { basePlanCost, boltOnItems } = calculateTotal(state);
+
+      const payloadItems: { name: string, description?: string, amount: number, quantity: number }[] = [];
+
+      // Base Plan
+      if (basePlanCost > 0) {
+        payloadItems.push({
+          name: `Capacity Plan: Up to ${state.tagCapacity}`,
+          amount: basePlanCost,
+          quantity: 1
+        });
+      }
+
+      // Reconstruct tag items with metadata and credit logic
+      let creditApplied = false;
+      const effectiveSelectedTags = { ...state.selectedTags };
+
+      // Implicit selection check (match pricing.ts)
+      const hasSelections = Object.values(state.selectedTags).some(qty => qty > 0);
+      if (state.tagCapacity === 1 && !hasSelections) {
+        effectiveSelectedTags['halo'] = 1;
+      }
+
+      // Determine the "first" tag for credit purposes (matching pricing.ts)
+      let freeTagId: string | undefined;
+      if (state.tagCapacity === 1) {
+        freeTagId = Object.keys(effectiveSelectedTags).find(key => effectiveSelectedTags[key] > 0);
+      }
+
+      PRICING.TAG_TYPES.forEach(tag => {
+        const qty = effectiveSelectedTags[tag.id] || 0;
+        if (qty > 0) {
+          let paidQty = qty;
+
+          // Apply credit if this is the chosen free tag
+          if (tag.id === freeTagId && !creditApplied) {
+            payloadItems.push({
+              name: `${tag.name} (Included via Plan)`,
+              description: tag.descriptor,
+              amount: 0,
+              quantity: 1
+            });
+            paidQty--;
+            creditApplied = true;
+          }
+
+          if (paidQty > 0) {
+            payloadItems.push({
+              name: tag.name,
+              description: tag.descriptor,
+              amount: tag.price,
+              quantity: paidQty
+            });
+          }
+        }
+      });
+
+      // Bolt-ons
+      boltOnItems.forEach(b => {
+        payloadItems.push({
+          name: b.name,
+          amount: b.price,
+          quantity: 1
+        });
+      });
+
+      // 2. Call Stripe Endpoint
+      const response = await fetch('/.netlify/functions/create-checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          items: payloadItems,
+          metadata: {
+            tagCapacity: String(state.tagCapacity),
+            freeHaloApplied: String(state.tagCapacity === 1 && effectiveSelectedTags['halo'] === 1 && !hasSelections),
+            selectedTags: JSON.stringify(state.selectedTags)
+          },
+          successUrl: window.location.origin + '/confirmation.html',
+          cancelUrl: window.location.href, // Stay on page
+        }),
+      });
+
+      const { sessionId, error } = await response.json();
+
+      if (error) {
+        console.error(error);
+        alert("Payment init failed: " + error);
+        if (originalText) ctaButton.textContent = originalText;
+        ctaButton.style.opacity = '1';
+        ctaButton.removeAttribute('disabled');
+        return;
+      }
+
+      // 3. Redirect
+      const stripeModule = await import('@stripe/stripe-js');
+      const stripe = await stripeModule.loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
+      if (stripe) {
+        const result = await (stripe as any).redirectToCheckout({ sessionId });
+        if (result.error) {
+          alert(result.error.message);
+          if (originalText) ctaButton.textContent = originalText;
+          ctaButton.style.opacity = '1';
+          ctaButton.removeAttribute('disabled');
+        }
+      }
+
+    } catch (e) {
+      console.error(e);
+      alert('An error occurred. Please try again.');
+      if (originalText) ctaButton.textContent = originalText;
       ctaButton.style.opacity = '1';
       ctaButton.removeAttribute('disabled');
-      updateUI(); // Reset state or just refresh UI
-    }, 1500);
+    }
   });
 
   updateUI();
 }
 
+// Theme Switching
+function initThemeSwitcher() {
+  const themeButtons = document.querySelectorAll('.theme-btn');
+  const body = document.body;
+
+  // Load saved theme or use default
+  const savedTheme = localStorage.getItem('ifoundit-theme') || 'default';
+  if (savedTheme !== 'default') {
+    body.setAttribute('data-theme', savedTheme);
+  }
+
+  // Update active button
+  themeButtons.forEach(btn => {
+    const btnTheme = (btn as HTMLElement).dataset.theme;
+    if (btnTheme === savedTheme) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+
+  // Handle theme button clicks
+  themeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = (btn as HTMLElement).dataset.theme!;
+
+      // Update active state
+      themeButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Apply theme
+      if (theme === 'default') {
+        body.removeAttribute('data-theme');
+      } else {
+        body.setAttribute('data-theme', theme);
+      }
+
+      // Save to localStorage
+      localStorage.setItem('ifoundit-theme', theme);
+    });
+  });
+}
+
 init();
+initThemeSwitcher();
