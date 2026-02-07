@@ -659,7 +659,7 @@ li::before {
 
 .tag-card {
   background: white;
-  border: 1px solid var(--glass-border);
+  border: 2px solid var(--accent-teal);
   border-radius: 12px;
   padding: 16px;
   display: flex;

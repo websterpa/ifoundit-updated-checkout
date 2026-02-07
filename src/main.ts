@@ -41,14 +41,33 @@ const summaryTotal = document.getElementById('summary-total')!;
 const stickyTotal = document.getElementById('sticky-total')!;
 const ctaButton = document.getElementById('cta-button') as HTMLButtonElement;
 
-// Inject static helper copy (centralised)
-const tagHelperText = document.getElementById('tag-selection-helper-text');
-if (tagHelperText) {
-  tagHelperText.textContent = UX_COPY.TAG_SELECTION_HELPER;
-}
+
 
 // Format currency
 const formatCurrency = (amount: number) => `£${amount.toFixed(2)}`;
+
+// Inject Copy Updates
+function updateStaticCopy() {
+  // Update Tag Selection Helper
+  const tagHelperText = document.getElementById('tag-selection-helper-text');
+  if (tagHelperText) {
+    tagHelperText.textContent = UX_COPY.TAG_SELECTION_HELPER;
+  }
+
+  // Enforce Mandatory Minimum Tag Copy at Source
+  // Target the first radio label (value="1")
+  const capacityRadio1 = document.querySelector('input[name="tagCapacity"][value="1"]');
+  if (capacityRadio1) {
+    const parentLabel = capacityRadio1.closest('.radio-label');
+    if (parentLabel) {
+      const spanText = parentLabel.querySelector('span:nth-of-type(1)');
+      const spanBadge = parentLabel.querySelector('.price-tag');
+
+      if (spanText) spanText.textContent = 'Minimum 1 tag (Halo) – can be replaced with any other tag';
+      if (spanBadge) spanBadge.textContent = 'Required';
+    }
+  }
+}
 
 // Render Tag Types Grid
 function renderTagTypes() {
@@ -271,6 +290,8 @@ function init() {
   if (form) {
     form.addEventListener('change', handleChange);
   }
+
+  updateStaticCopy();
 
   ctaButton.addEventListener('click', async () => {
     if (ctaButton.disabled) return;
