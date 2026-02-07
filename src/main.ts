@@ -52,13 +52,25 @@ const formatCurrency = (amount: number) => `£${amount.toFixed(2)}`;
 
 // Render Tag Types Grid
 function renderTagTypes() {
-  const { totalSelectedQuantity } = calculateTotal(state);
-  const isAtCapacity = totalSelectedQuantity >= state.tagCapacity;
+  // Determine effective selections for UI (mirroring pricing logic)
+  let effectiveSelectedTags = { ...state.selectedTags };
+  const hasSelections = Object.values(state.selectedTags).some(qty => qty > 0);
+  if (!hasSelections) {
+    effectiveSelectedTags['halo'] = 1;
+  }
+
+  // Recalculate total quantity for the effective set
+  // (Note: calculateTotal returns this, but we want to be explicit about what the UI shows)
+  const effectiveTotalQty = Object.values(effectiveSelectedTags).reduce((a, b) => a + b, 0);
+  const isAtCapacity = effectiveTotalQty >= state.tagCapacity;
 
   tagTypesGrid.innerHTML = PRICING.TAG_TYPES.map(tag => {
-    const qty = state.selectedTags[tag.id] || 0;
+    const qty = effectiveSelectedTags[tag.id] || 0;
     const canIncrement = !isAtCapacity;
-    const canDecrement = qty > 0;
+
+    // Lock decrement if this is the last Halo tag and it's the only Thing selected
+    const isMandatoryHalo = tag.id === 'halo' && effectiveTotalQty === 1 && qty === 1;
+    const canDecrement = qty > 0 && !isMandatoryHalo;
 
     return `
       <div class="tag-card ${isAtCapacity ? 'at-capacity' : ''} ${qty > 0 ? 'has-qty' : ''}" data-id="${tag.id}">
