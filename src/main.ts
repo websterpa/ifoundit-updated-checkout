@@ -55,17 +55,10 @@ function updateStaticCopy() {
   }
 
   // Enforce Mandatory Minimum Tag Copy at Source
-  // Target the first radio label (value="1")
+  // (Disabled: Static HTML is now source of truth)
   const capacityRadio1 = document.querySelector('input[name="tagCapacity"][value="1"]');
   if (capacityRadio1) {
-    const parentLabel = capacityRadio1.closest('.radio-label');
-    if (parentLabel) {
-      const spanText = parentLabel.querySelector('span:nth-of-type(1)');
-      const spanBadge = parentLabel.querySelector('.price-tag');
-
-      if (spanText) spanText.textContent = 'Minimum 1 tag (Halo) – can be replaced with any other tag';
-      if (spanBadge) spanBadge.textContent = 'Required';
-    }
+    // Logic removed to respect static HTML "Up to 1 tag"
   }
 }
 

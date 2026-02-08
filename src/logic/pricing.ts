@@ -7,12 +7,12 @@ export const PRICING = {
         20: 3.99,
     },
     TAG_TYPES: [
-        { id: 'halo', name: 'Halo', price: 3.99, descriptor: 'Electronics and travel items.' },
-        { id: 'orbit', name: 'Orbit', price: 4.99, descriptor: 'Keys, handbags, or backpacks.' },
-        { id: 'pulse', name: 'Pulse', price: 4.99, descriptor: 'Wallets, purses, or clutches.' },
-        { id: 'echo', name: 'Echo', price: 5.99, descriptor: 'Keys and pockets.' },
-        { id: 'trek', name: 'Trek', price: 5.99, descriptor: 'Bags, laptop cases, and totes.' },
-        { id: 'roam', name: 'Roam', price: 6.99, descriptor: 'Suitcases and baggage.' },
+        { id: 'halo', name: 'Halo', price: 3.99, descriptor: 'For electronics and travel.' },
+        { id: 'orbit', name: 'Orbit', price: 4.99, descriptor: 'For keys and bags.' },
+        { id: 'pulse', name: 'Pulse', price: 4.99, descriptor: 'For wallets and purses.' },
+        { id: 'echo', name: 'Echo', price: 5.99, descriptor: 'For keys and pockets.' },
+        { id: 'trek', name: 'Trek', price: 5.99, descriptor: 'For detailed tracking.' },
+        { id: 'roam', name: 'Roam', price: 6.99, descriptor: 'For heavy duty use.' },
     ],
     FINDER_REWARDS: {
         0: 0,
@@ -95,19 +95,19 @@ export function calculateTotal(state: CartState): {
     const boltOnItems: { name: string, price: number }[] = [];
     if (state.finderRewards > 0) {
         boltOnItems.push({
-            name: `${state.finderRewards} × £20 Finder Credit${state.finderRewards > 1 ? 's' : ''}`,
+            name: state.finderRewards === 1 ? '£20 Credit' : '2 × £20 Credits',
             price: finderCost
         });
     }
     if (state.returnCredits > 0) {
         boltOnItems.push({
-            name: `${state.returnCredits} × Return Shipping Credit${state.returnCredits > 1 ? 's' : ''}`,
+            name: state.returnCredits === 1 ? '1 Return' : '3 Returns',
             price: returnsCost
         });
     }
     if (state.extraContacts > 0) {
         boltOnItems.push({
-            name: `${state.extraContacts} Additional Recovery Contact${state.extraContacts > 1 ? 's' : ''}`,
+            name: state.extraContacts === 1 ? '1 Recovery Contact' : '2 Recovery Contacts',
             price: contactsCost
         });
     }

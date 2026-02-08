@@ -47,16 +47,15 @@
           <!-- Choose Tag Capacity -->
           <section class="checkout-section">
             <h2 class="section-heading">Choose Tag Capacity</h2>
-            <p class="section-subtext">How many items to protect?</p>
+
 
             <div class="capacity-options">
               <label class="radio-card">
                 <input type="radio" name="tagCapacity" value="1" checked>
                 <div class="radio-content">
-                  <span class="radio-title">Minimum 1 tag (Halo)</span>
-                  <span class="radio-desc">One tag required. Replaceable.</span>
+                  <span class="radio-title">Up to 1 tag</span>
                 </div>
-                <div class="radio-price">Required</div>
+                <div class="radio-price">Included</div>
               </label>
 
               <label class="radio-card">
@@ -97,10 +96,7 @@
                 Selected: <span id="current-selection-count">0</span> / <span id="max-capacity-count">1</span>
               </div>
             </div>
-            <p class="section-subtext">
-              Choose physical tags for your plan.
-              <span id="tag-selection-helper-text"></span>
-            </p>
+
 
             <div id="tag-types-grid" class="tag-grid">
               <!-- Dynamically populated -->
@@ -114,8 +110,8 @@
             <div class="addons-grid">
               <!-- Finder Rewards -->
               <div class="addon-group">
-                <h3>Finder Reward Notes</h3>
-                <p class="addon-desc">Payable only upon item return.</p>
+                <h3>Finder Rewards</h3>
+
 
                 <div class="radio-stack">
                   <label class="radio-row">
@@ -124,13 +120,11 @@
                   </label>
                   <label class="radio-row">
                     <input type="radio" name="finderRewards" value="1">
-                    <span>1 × £20 credit</span>
-                    <span class="price">£2.99</span>
+                    <span>£20 Credit — £2.99</span>
                   </label>
                   <label class="radio-row">
                     <input type="radio" name="finderRewards" value="2">
-                    <span>2 × £20 credits</span>
-                    <span class="price">£3.99</span>
+                    <span>2 × £20 Credits — £3.99</span>
                   </label>
                 </div>
               </div>
@@ -138,7 +132,7 @@
               <!-- Return Credits -->
               <div class="addon-group">
                 <h3>Return Credits</h3>
-                <p class="addon-desc">Pre-paid shipping for returns.</p>
+
 
                 <div class="radio-stack">
                   <label class="radio-row">
@@ -147,21 +141,19 @@
                   </label>
                   <label class="radio-row">
                     <input type="radio" name="returnCredits" value="1">
-                    <span>1 × return</span>
-                    <span class="price">£3.99</span>
+                    <span>1 Return — £3.99</span>
                   </label>
                   <label class="radio-row">
                     <input type="radio" name="returnCredits" value="3">
-                    <span>3 × returns</span>
-                    <span class="price">£6.99</span>
+                    <span>3 Returns — £6.99</span>
                   </label>
                 </div>
               </div>
 
               <!-- Additional Contacts -->
               <div class="addon-group">
-                <h3>Additional Contacts</h3>
-                <p class="addon-desc">Extra recovery contacts.</p>
+                <h3>Recovery Contacts</h3>
+
 
                 <div class="radio-stack">
                   <label class="radio-row">
@@ -170,13 +162,11 @@
                   </label>
                   <label class="radio-row">
                     <input type="radio" name="extraContacts" value="1">
-                    <span>1 additional</span>
-                    <span class="price">£0.99</span>
+                    <span>1 Additional — £0.99</span>
                   </label>
                   <label class="radio-row">
                     <input type="radio" name="extraContacts" value="2">
-                    <span>2 additional</span>
-                    <span class="price">£1.99</span>
+                    <span>2 Additional — £1.99</span>
                   </label>
                 </div>
               </div>
@@ -197,15 +187,15 @@
             <div class="summary-divider"></div>
 
             <div class="summary-row">
-              <span>Base Plan</span>
+              <span>Capacity Plan</span>
               <span id="summary-base-plan-cost">£0.00</span>
             </div>
             <div class="summary-row">
-              <span>Tags Subtotal</span>
+              <span>Tags</span>
               <span id="summary-tags-subtotal">£0.00</span>
             </div>
             <div class="summary-row">
-              <span>Bolt-On Subtotal</span>
+              <span>Add-ons</span>
               <span id="summary-addons-cost">£0.00</span>
             </div>
 
