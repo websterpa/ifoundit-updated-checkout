@@ -129,7 +129,7 @@ input[type="radio"] {
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.15s ease-out;
   background: white;
   position: relative;
   min-height: 80px;
@@ -148,8 +148,7 @@ input[type="radio"] {
   /* Remove shadow cue */
   margin: -1px;
   /* Compensation */
-  background-color: #F8FAFC;
-  /* Subtle background cue */
+  /* background-color: #F8FAFC; Removed for Single Cue */
   z-index: 1;
 }
 
@@ -193,7 +192,7 @@ input[type="radio"] {
   flex-direction: column;
   justify-content: space-between;
   background: white;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.15s ease-out;
   min-height: 180px;
   /* Uniform height */
 }
@@ -207,7 +206,7 @@ input[type="radio"] {
   border: 2px solid var(--primary-color);
   box-shadow: none;
   margin: -1px;
-  background-color: #F8FAFC;
+  /* background-color: #F8FAFC; Removed for Single Cue */
 }
 
 .tag-info h3 {
@@ -260,7 +259,7 @@ input[type="radio"] {
   font-size: 1.125rem;
   margin: 0;
   padding: 0;
-  transition: all 0.2s;
+  transition: all 0.15s ease-out;
 }
 
 .qty-btn:hover:not(:disabled) {
@@ -269,7 +268,8 @@ input[type="radio"] {
 }
 
 .qty-btn:disabled {
-  opacity: 0.3;
+  opacity: 0.6;
+  /* Raised from 0.3 */
   cursor: default;
 }
 
@@ -307,7 +307,7 @@ input[type="radio"] {
   border-bottom: 1px solid var(--border-color);
   background: transparent;
   cursor: pointer;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.15s ease-out;
   position: relative;
 }
 
@@ -327,15 +327,9 @@ input[type="radio"] {
   font-weight: 400;
 }
 
-.radio-row:has(input:checked) span {
-  color: var(--text-primary);
-  font-weight: 500;
-  /* Subtle weight increase */
-}
+/* Removed font-weight change for single cue consistency */
 
-.radio-row:has(input:checked) .price {
-  color: var(--primary-color);
-}
+/* Removed color change for single cue consistency */
 
 .radio-row .price {
   color: var(--text-secondary);
@@ -432,7 +426,7 @@ input[type="radio"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: opacity 0.2s;
+  transition: opacity 0.15s ease-out;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
@@ -570,7 +564,7 @@ input[type="radio"] {
 .legal-links a {
   color: inherit;
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.15s ease-out;
 }
 
 .legal-links a:hover {
