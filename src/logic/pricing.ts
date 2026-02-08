@@ -7,12 +7,12 @@ export const PRICING = {
         20: 3.99,
     },
     TAG_TYPES: [
-        { id: 'halo', name: 'iFoundIt - Halo', price: 3.99, descriptor: 'Designed for portable electronics and essential items like travel wallets.' },
-        { id: 'orbit', name: 'iFoundIt - Orbit', price: 4.99, descriptor: 'Perfect for a set of car keys or attached to the inside of a handbag/backpack' },
-        { id: 'pulse', name: 'iFoundIt - Pulse', price: 4.99, descriptor: 'Slim card designed to fit discreetly into wallets, purses, or clutches.' },
-        { id: 'echo', name: 'iFoundIt - Echo', price: 5.99, descriptor: 'Lightweight and compact tag designed specifically for keys and pockets.' },
-        { id: 'trek', name: 'iFoundIt - Trek', price: 5.99, descriptor: 'Stylish and durable tag designed for bags, backpacks, laptop cases, and totes.' },
-        { id: 'roam', name: 'iFoundIt - Roam', price: 6.99, descriptor: 'Premium durable tag ideal for suitcases and airport baggage handling.' },
+        { id: 'halo', name: 'Halo', price: 3.99, descriptor: 'Electronics and travel items.' },
+        { id: 'orbit', name: 'Orbit', price: 4.99, descriptor: 'Keys, handbags, or backpacks.' },
+        { id: 'pulse', name: 'Pulse', price: 4.99, descriptor: 'Wallets, purses, or clutches.' },
+        { id: 'echo', name: 'Echo', price: 5.99, descriptor: 'Keys and pockets.' },
+        { id: 'trek', name: 'Trek', price: 5.99, descriptor: 'Bags, laptop cases, and totes.' },
+        { id: 'roam', name: 'Roam', price: 6.99, descriptor: 'Suitcases and baggage.' },
     ],
     FINDER_REWARDS: {
         0: 0,

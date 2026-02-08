@@ -226,7 +226,7 @@ function updateUI() {
   ctaButton.disabled = !isValid;
 
   if (!isValid) {
-    ctaButton.title = totalSelectedQuantity < 1 ? 'Please select at least one tag' : 'Selected tags exceed capacity';
+    ctaButton.title = totalSelectedQuantity < 1 ? 'Select at least one tag' : 'Selected tags exceed capacity';
   } else {
     ctaButton.title = '';
   }
