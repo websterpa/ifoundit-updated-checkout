@@ -40,6 +40,7 @@ const summaryAddons = document.getElementById('summary-addons-cost')!;
 const summaryTotal = document.getElementById('summary-total')!;
 const stickyTotal = document.getElementById('sticky-total')!;
 const ctaButton = document.getElementById('cta-button') as HTMLButtonElement;
+const checkoutError = document.getElementById('checkout-error')!;
 
 
 
@@ -288,6 +289,7 @@ function init() {
 
   ctaButton.addEventListener('click', async () => {
     if (ctaButton.disabled) return;
+    checkoutError.hidden = true;
 
     // Guardrail: Prevent £0 checkout
     const { total } = calculateTotal(state);
@@ -370,7 +372,8 @@ function init() {
 
       if (error) {
         console.error(error);
-        alert("Payment init failed: " + error);
+        checkoutError.textContent = "Payment init failed: " + error;
+        checkoutError.hidden = false;
         if (originalText) ctaButton.textContent = originalText;
         ctaButton.style.opacity = '1';
         ctaButton.removeAttribute('disabled');
@@ -384,7 +387,8 @@ function init() {
       if (stripe) {
         const result = await (stripe as any).redirectToCheckout({ sessionId });
         if (result.error) {
-          alert(result.error.message);
+          checkoutError.textContent = result.error.message;
+          checkoutError.hidden = false;
           if (originalText) ctaButton.textContent = originalText;
           ctaButton.style.opacity = '1';
           ctaButton.removeAttribute('disabled');
@@ -393,7 +397,8 @@ function init() {
 
     } catch (e) {
       console.error(e);
-      alert('An error occurred. Please try again.');
+      checkoutError.textContent = 'An error occurred. Please try again.';
+      checkoutError.hidden = false;
       if (originalText) ctaButton.textContent = originalText;
       ctaButton.style.opacity = '1';
       ctaButton.removeAttribute('disabled');
