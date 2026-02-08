@@ -9,243 +9,153 @@
     content="Secure your valuables with iFoundIt tags. Single simplified checkout flow for tags, rewards, and recovery contacts.">
 </head>
 
-<body class="theme-base">
-  <!-- Theme Switcher -->
-  <div class="theme-switcher">
-    <button class="theme-btn active" data-theme="default" data-theme-name="Midnight Teal"></button>
-    <button class="theme-btn" data-theme="ocean" data-theme-name="Ocean Blue"></button>
-    <button class="theme-btn" data-theme="steel" data-theme-name="Arctic Steel"></button>
-    <button class="theme-btn" data-theme="sunset" data-theme-name="Sunset Pro"></button>
-    <button class="theme-btn" data-theme="charcoal" data-theme-name="Charcoal Depths"></button>
-  </div>
+<body>
+  <main class="checkout-page">
 
-  <div id="app" class="app-container">
-    <header>
-      <div class="logo-container">
-        <img src="/logo_circle.png" alt="iFoundIt Logo" class="logo">
-      </div>
-      <!-- Header text removed for visual confidence -->
-    </header>
+    <section class="checkout-left">
+      <h1>Checkout</h1>
 
-    <main class="checkout-layout">
-      <!-- Left Column: Configuration -->
-      <div class="checkout-main">
+      <form id="checkout-form">
 
-        <!-- Welcome / Context -->
-        <section class="checkout-section welcome-section">
-          <h2>CHECKOUT SOURCE TEST — DO NOT IGNORE</h2>
-          <p>
-            Essential plan included. Configure protection below.
-            One tag minimum.
-          </p>
+        <section id="capacity-selector">
+          <h2>How many things do I want to protect?</h2>
+          <div id="max-capacity-count"></div>
+
+          <div class="capacity-options">
+            <label class="radio-card">
+              <input type="radio" name="tagCapacity" value="1" checked>
+              <div class="radio-content">
+                <span class="radio-title">Up to 1 tag</span>
+              </div>
+              <div class="radio-price">Included</div>
+            </label>
+
+            <label class="radio-card">
+              <input type="radio" name="tagCapacity" value="3">
+              <div class="radio-content">
+                <span class="radio-title">Up to 3 tags</span>
+              </div>
+              <div class="radio-price">£0.99 / year</div>
+            </label>
+
+            <label class="radio-card">
+              <input type="radio" name="tagCapacity" value="10">
+              <div class="radio-content">
+                <span class="radio-title">Up to 10 tags</span>
+              </div>
+              <div class="radio-price">£1.99 / year</div>
+            </label>
+
+            <label class="radio-card">
+              <input type="radio" name="tagCapacity" value="20">
+              <div class="radio-content">
+                <span class="radio-title">Up to 20 tags</span>
+              </div>
+              <div class="radio-price">£3.99 / year</div>
+            </label>
+          </div>
         </section>
 
-        <form id="checkout-form">
-          <!-- Choose Tag Capacity -->
-          <section class="checkout-section">
-            <h2 class="section-heading">Choose Tag Capacity</h2>
+        <section id="tag-selector">
+          <h2>Select your tags</h2>
+          <div id="tag-types-grid"></div>
+          <div>
+            <span id="current-selection-count"></span>
+          </div>
+        </section>
 
+        <section id="addons-selector">
+          <h2>Optional add-ons</h2>
 
-            <div class="capacity-options">
-              <label class="radio-card">
-                <input type="radio" name="tagCapacity" value="1" checked>
-                <div class="radio-content">
-                  <span class="radio-title">Up to 1 tag</span>
-                </div>
-                <div class="radio-price">Included</div>
-              </label>
-
-              <label class="radio-card">
-                <input type="radio" name="tagCapacity" value="3">
-                <div class="radio-content">
-                  <span class="radio-title">Up to 3 tags</span>
-                </div>
-                <div class="radio-price">£0.99 / year</div>
-              </label>
-
-              <label class="radio-card">
-                <input type="radio" name="tagCapacity" value="10">
-                <div class="radio-content">
-                  <span class="radio-title">Up to 10 tags</span>
-                </div>
-                <div class="radio-price">£1.99 / year</div>
-              </label>
-
-              <label class="radio-card">
-                <input type="radio" name="tagCapacity" value="20">
-                <div class="radio-content">
-                  <span class="radio-title">Up to 20 tags</span>
-                </div>
-                <div class="radio-price">£3.99 / year</div>
-              </label>
-            </div>
-
-            <div class="contact-support-link">
-              More than 20 tags? <a href="#">Contact Support</a>
-            </div>
-          </section>
-
-          <!-- Select Your Tags -->
-          <section class="checkout-section">
-            <div class="section-header">
-              <h2 class="section-heading">Select Your Tags</h2>
-              <div class="counter-badge">
-                Selected: <span id="current-selection-count">0</span> / <span id="max-capacity-count">1</span>
+          <div class="addons-grid">
+            <!-- Finder Rewards -->
+            <div class="addon-group">
+              <h3>Finder Rewards</h3>
+              <div class="radio-stack">
+                <label class="radio-row">
+                  <input type="radio" name="finderRewards" value="0" checked>
+                  <span>None</span>
+                </label>
+                <label class="radio-row">
+                  <input type="radio" name="finderRewards" value="1">
+                  <span>£20 Credit — £2.99</span>
+                </label>
+                <label class="radio-row">
+                  <input type="radio" name="finderRewards" value="2">
+                  <span>2 × £20 Credits — £3.99</span>
+                </label>
               </div>
             </div>
 
-
-            <div id="tag-types-grid" class="tag-grid">
-              <!-- Dynamically populated -->
-            </div>
-          </section>
-
-          <!-- Optional Add-ons -->
-          <section class="checkout-section">
-            <h2 class="section-heading">Optional Add-ons</h2>
-
-            <div class="addons-grid">
-              <!-- Finder Rewards -->
-              <div class="addon-group">
-                <h3>Finder Rewards</h3>
-
-
-                <div class="radio-stack">
-                  <label class="radio-row">
-                    <input type="radio" name="finderRewards" value="0" checked>
-                    <span>None</span>
-                  </label>
-                  <label class="radio-row">
-                    <input type="radio" name="finderRewards" value="1">
-                    <span>£20 Credit — £2.99</span>
-                  </label>
-                  <label class="radio-row">
-                    <input type="radio" name="finderRewards" value="2">
-                    <span>2 × £20 Credits — £3.99</span>
-                  </label>
-                </div>
-              </div>
-
-              <!-- Return Credits -->
-              <div class="addon-group">
-                <h3>Return Credits</h3>
-
-
-                <div class="radio-stack">
-                  <label class="radio-row">
-                    <input type="radio" name="returnCredits" value="0" checked>
-                    <span>None</span>
-                  </label>
-                  <label class="radio-row">
-                    <input type="radio" name="returnCredits" value="1">
-                    <span>1 Return — £3.99</span>
-                  </label>
-                  <label class="radio-row">
-                    <input type="radio" name="returnCredits" value="3">
-                    <span>3 Returns — £6.99</span>
-                  </label>
-                </div>
-              </div>
-
-              <!-- Additional Contacts -->
-              <div class="addon-group">
-                <h3>Recovery Contacts</h3>
-
-
-                <div class="radio-stack">
-                  <label class="radio-row">
-                    <input type="radio" name="extraContacts" value="0" checked>
-                    <span>None (1 free)</span>
-                  </label>
-                  <label class="radio-row">
-                    <input type="radio" name="extraContacts" value="1">
-                    <span>1 Additional — £0.99</span>
-                  </label>
-                  <label class="radio-row">
-                    <input type="radio" name="extraContacts" value="2">
-                    <span>2 Additional — £1.99</span>
-                  </label>
-                </div>
+            <!-- Return Credits -->
+            <div class="addon-group">
+              <h3>Return Credits</h3>
+              <div class="radio-stack">
+                <label class="radio-row">
+                  <input type="radio" name="returnCredits" value="0" checked>
+                  <span>None</span>
+                </label>
+                <label class="radio-row">
+                  <input type="radio" name="returnCredits" value="1">
+                  <span>1 Return — £3.99</span>
+                </label>
+                <label class="radio-row">
+                  <input type="radio" name="returnCredits" value="3">
+                  <span>3 Returns — £6.99</span>
+                </label>
               </div>
             </div>
-          </section>
-        </form>
-      </div>
 
-      <!-- Right Column: Summary & Payment -->
-      <aside class="checkout-sidebar">
-        <div class="sticky-summary">
-          <h2 class="section-heading">Order Summary</h2>
-
-          <div class="summary-details">
-            <div id="summary-tag-items" class="summary-list"></div>
-            <div id="summary-bolt-on-items" class="summary-list"></div>
-
-            <div class="summary-divider"></div>
-
-            <div class="summary-row">
-              <span>Capacity Plan</span>
-              <span id="summary-base-plan-cost">£0.00</span>
-            </div>
-            <div class="summary-row">
-              <span>Tags</span>
-              <span id="summary-tags-subtotal">£0.00</span>
-            </div>
-            <div class="summary-row">
-              <span>Add-ons</span>
-              <span id="summary-addons-cost">£0.00</span>
-            </div>
-
-            <div class="summary-total">
-              <span>Total / Year</span>
-              <span id="summary-total">£0.00</span>
+            <!-- Additional Contacts -->
+            <div class="addon-group">
+              <h3>Recovery Contacts</h3>
+              <div class="radio-stack">
+                <label class="radio-row">
+                  <input type="radio" name="extraContacts" value="0" checked>
+                  <span>None (1 free)</span>
+                </label>
+                <label class="radio-row">
+                  <input type="radio" name="extraContacts" value="1">
+                  <span>1 Additional — £0.99</span>
+                </label>
+                <label class="radio-row">
+                  <input type="radio" name="extraContacts" value="2">
+                  <span>2 Additional — £1.99</span>
+                </label>
+              </div>
             </div>
           </div>
+        </section>
 
-          <button id="cta-button" class="primary-cta">
-            Complete Protection
-            <div class="secure-badge">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-              </svg>
-              Secure checkout
-            </div>
-          </button>
+        <section id="payment-section">
+          <h2>Payment</h2>
+          <div id="checkout-error"></div>
+        </section>
 
-          <div id="checkout-error" class="checkout-error" hidden></div>
+      </form>
+    </section>
 
-          <div class="payment-methods">
-            <svg class="card-icon" viewBox="0 0 38 24" width="38" height="24" fill="none" stroke="currentColor"
-              stroke-width="1.5">
-              <rect x="2" y="2" width="34" height="20" rx="3"></rect>
-              <line x1="2" y1="8" x2="36" y2="8"></line>
-              <line x1="6" y1="16" x2="14" y2="16"></line>
-            </svg>
-            <span class="payment-text">Cards Accepted</span>
-          </div>
+    <aside class="checkout-right">
+      <section id="order-summary">
+        <h2>Order summary</h2>
 
-          <div class="legal-links">
-            <a href="#">Terms</a>
-            <span class="separator">&bull;</span>
-            <a href="#">Privacy</a>
-          </div>
-        </div>
-      </aside>
+        <ul id="summary-tag-items"></ul>
+        <ul id="summary-bolt-on-items"></ul>
 
-      <!-- Mobile Floating Total (Hidden on Desktop) -->
-      <div class="mobile-sticky-footer" id="sticky-footer">
-        <div class="footer-content">
-          <div class="footer-total">
-            <span>Total</span>
-            <span id="sticky-total">£0.00</span>
-          </div>
-          <!-- CTA helps user jump to payment or triggers submit on mobile -->
-        </div>
-      </div>
+        <div id="summary-base-plan-cost"></div>
+        <div id="summary-tags-subtotal"></div>
+        <div id="summary-addons-cost"></div>
 
-    </main>
-  </div>
+        <div id="summary-total"></div>
+      </section>
+    </aside>
+
+    <footer class="checkout-sticky">
+      <div id="sticky-total"></div>
+      <button id="cta-button" type="button">Complete Protection</button>
+    </footer>
+
+  </main>
   <script type="module" src="/src/main.ts"></script>
 </body>
 
