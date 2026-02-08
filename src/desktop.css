@@ -1,0 +1,192 @@
+/* Desktop Layout Enhancements */
+
+/* Layout Wrapper - Grid Setup */
+.layout-wrapper {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.desktop-summary {
+    display: none;
+    /* Hidden on mobile */
+}
+
+.mobile-only-review {
+    display: block;
+}
+
+/* Desktop Breakpoint */
+@media (min-width: 1024px) {
+    .layout-wrapper {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        /* Accordion | Sticky Summary */
+        gap: 64px;
+        /* Generous whitespace */
+        max-width: 1200px;
+        padding: 0 40px;
+        margin-top: 100px;
+        /* More top space */
+    }
+
+    .checkout-flow {
+        margin: 0;
+        /* Reset mobile auto margin */
+        max-width: 100%;
+        /* Let grid control width */
+        padding: 0;
+    }
+
+    /* Accordion Typography & Spacing Scale-up */
+    .step-header {
+        padding: 32px;
+    }
+
+    .step-title {
+        font-size: 1.25rem;
+    }
+
+    .step-helper {
+        font-size: 1rem;
+    }
+
+    .step-content {
+        padding: 0 32px 32px;
+        /* Match header padding */
+    }
+
+    /* Desktop Sticky Sidebar */
+    .desktop-summary {
+        display: block;
+        position: sticky;
+        top: 100px;
+        /* Offset from header */
+        height: fit-content;
+    }
+
+    .summary-card {
+        background: #FFFFFF;
+        border-radius: var(--radius-card);
+        box-shadow: var(--shadow-soft);
+        padding: 32px;
+        border: 1px solid var(--border-light);
+    }
+
+    .summary-card h3 {
+        margin-top: 0;
+        margin-bottom: 24px;
+        font-size: 1.25rem;
+        color: var(--text-primary);
+    }
+
+    .summary-divider {
+        height: 1px;
+        background: var(--border-light);
+        margin: 24px 0;
+    }
+
+    .desktop-total-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 8px;
+    }
+
+    .desktop-total-row span:first-child {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+
+    .desktop-total-row span:last-child {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        font-feature-settings: "tnum";
+    }
+
+    /* Hide redundant elements */
+    .mobile-only-review {
+        display: none;
+    }
+
+    /* Footer adjustments */
+    .sticky-footer {
+        /* On desktop, sticky footer is mainly for CTA. Total is in sidebar. */
+        /* BUT design says "Right column... Final total". */
+        /* Design does NOT say remove sticky footer. */
+        /* "No CTA button inside summary (CTA remains in accordion flow)"? */
+        /* Wait, "CTA remains in accordion flow" -> implies CTA is inside the steps? */
+        /* OR "Sticky summary bar... CTA remains in accordion flow". */
+        /* Prompt says "CTA remains in accordion flow". */
+        /* Logic: In mobile, CTA is in sticky footer. */
+        /* Does prompt mean "CTA remains in the flow of the page / sticky footer"? */
+        /* "No CTA button inside summary (CTA remains in accordion flow)" usually means CTA is inside the 'Left Column' flow? */
+        /* But currently CTA is in fixed .sticky-footer. */
+        /* If I keep .sticky-footer fixed at bottom on desktop, it spans full width? */
+        /* A common pattern is CTA inside the accordion step or at the bottom of the left column. */
+        /* Let's interpret "CTA remains in accordion flow" as "At the end of the accordion form". */
+        /* BUT we have a sticky footer div currently. */
+        /* I will move the CTA button visually to be at the bottom of the left column (or fixed) but scoped to left? */
+        /* Actually, keeping the sticky footer bar at the bottom is consistently "in flow" relative to viewport. */
+        /* Let's keep the sticky footer but maybe style it differently? */
+        /* Or hide the "Total" in sticky footer on desktop since it's in the sidebar? */
+        /* "Right column... Final total (large, bold)". */
+        /* Left column CTA? */
+
+        /* Let's Try: Sticky Footer acts as the main CTA bar on Desktop too, but maybe centered or aligned right? */
+        /* OR, better interpretation: The CTA should be inside the Step 4 open state? */
+        /* No, Step 1/2/3 also need CTA "Continue to..." */
+        /* So the CTA is a persistent element. */
+        /* I will keep the sticky footer bar but hide the duplicate Total on desktop if it's already in the sidebar. */
+
+        padding: 24px 40px;
+        max-width: 1200px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        box-shadow: none;
+        /* Clean look on desktop? Or consistent? */
+        border-top: 1px solid var(--border-light);
+        /* If we make it relative, it won't be sticky. */
+        /* Prompt: "Desktop checkout feels calm... No functional changes". */
+        /* Functional: Sticky footer is functional. */
+
+    }
+
+    .sticky-footer .total-value,
+    .sticky-footer .total-label {
+        display: none;
+        /* Hide total in footer on desktop */
+    }
+
+    .sticky-footer .primary-btn {
+        max-width: 100%;
+        /* Fill the footer or left column? */
+        /* If I grid the footer, I can align it with the left column. */
+    }
+
+    /* Improve Grid Alignment for Footer */
+    .sticky-footer {
+        /* Reset fixed positioning to be part of layout? */
+        /* If sticky footer is fixed 0,0, it overlays. */
+        /* Let's keep it fixed but align contents. */
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 64px;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(12px);
+    }
+
+    .sticky-footer>div {
+        /* Total container - hidden */
+        display: none;
+    }
+
+    .sticky-footer>button {
+        /* CTA - Ensure it sits in left column area */
+        grid-column: 1;
+        width: 100%;
+        max-width: none;
+    }
+}

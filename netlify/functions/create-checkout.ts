@@ -8,6 +8,14 @@ export const handler: Handler = async (event, context) => {
         return { statusCode: 405, body: 'Method Not Allowed' };
     }
 
+    // Kill-Switch Enforcement
+    if (process.env.CHECKOUT_ENABLED === 'false') {
+        return {
+            statusCode: 503,
+            body: JSON.stringify({ error: 'Checkout is temporarily disabled.' })
+        };
+    }
+
     try {
         const { items, metadata, successUrl, cancelUrl } = JSON.parse(event.body || '{}');
 

@@ -1,10 +1,18 @@
 
+// Canonical Capacity Definitions
+export const CAPACITY_CONFIG: Record<number, { price: number; label: string }> = {
+    1: { price: 0, label: "Essential Plan" },
+    3: { price: 0.99, label: "Up to 3 tags" },
+    10: { price: 1.99, label: "Up to 10 tags" },
+    20: { price: 3.99, label: "Up to 20 tags" },
+};
+
 export const PRICING = {
     TAGS: {
-        1: 0,
-        3: 0.99,
-        10: 1.99,
-        20: 3.99,
+        1: CAPACITY_CONFIG[1].price,
+        3: CAPACITY_CONFIG[3].price,
+        10: CAPACITY_CONFIG[10].price,
+        20: CAPACITY_CONFIG[20].price,
     },
     TAG_TYPES: [
         { id: 'halo', name: 'iFoundIt - Halo', price: 3.99, descriptor: 'Designed for portable electronics and essential items like travel wallets.' },
@@ -54,6 +62,7 @@ export const INITIAL_STATE: CartState = {
 
 export function calculateTotal(state: CartState): {
     basePlanCost: number;
+    basePlanLabel: string;
     rawTagsCost: number;
     tagItems: { name: string, quantity: number, price: number }[];
     boltOnItems: { name: string, price: number }[];
@@ -62,6 +71,9 @@ export function calculateTotal(state: CartState): {
     totalSelectedQuantity: number;
 } {
     const basePlanCost = PRICING.TAGS[state.tagCapacity];
+
+    // Canonical Label Logic
+    const basePlanLabel = CAPACITY_CONFIG[state.tagCapacity]?.label || `Up to ${state.tagCapacity} tags`;
 
     // IMPLICIT SELECTION RULE:
     // If no tags are explicitly selected, treat it as 1 'Halo' tag.
@@ -119,6 +131,7 @@ export function calculateTotal(state: CartState): {
 
     return {
         basePlanCost,
+        basePlanLabel, // Exported for UI consumption
         rawTagsCost: parseFloat(rawTagsCost.toFixed(2)),
         tagItems,
         boltOnItems,

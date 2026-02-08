@@ -1,0 +1,96 @@
+/* Microcopy & Visual Enhancements - Refined */
+
+/* Step Helper Text */
+.step-helper {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin: 6px 0 0;
+    /* More breathing room */
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Microcopy in Selections */
+.microcopy-helper {
+    font-size: 0.85rem;
+    /* Accessible size */
+    color: var(--text-secondary);
+    display: block;
+    margin-top: 4px;
+}
+
+.selection-feedback {
+    color: var(--accent-blue-dark);
+    /* Contrast compliant */
+    font-weight: 600;
+}
+
+/* Tag Selection Inline Feedback */
+.tag-info .selection-feedback {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.85rem;
+    opacity: 0;
+    animation: fade-in-up 0.3s ease-out forwards;
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Payment Trust */
+.trust-text {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 24px;
+}
+
+/* Visual Cues */
+.step-card {
+    /* Default border hidden or light */
+    border-left: 4px solid transparent;
+}
+
+.step-card.active {
+    border-left: 4px solid var(--accent-blue);
+    /* Shadow handle in main accordion css */
+}
+
+/* Touch Targets for Inputs */
+.radio-label {
+    padding: 16px;
+    min-height: 64px;
+    /* Ensure 48px+ touch target */
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.radio-label:active {
+    background-color: #F3F4F6;
+    /* Instant feedback */
+}
+
+/* Ensure checkmark is visible */
+.checkmark {
+    flex-shrink: 0;
+}
+
+/* Price Tags */
+.price-tag {
+    font-weight: 700;
+    color: var(--text-primary);
+    /* High contrast */
+    font-size: 0.95rem;
+}
