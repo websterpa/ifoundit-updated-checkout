@@ -7,11 +7,12 @@
   --text-tertiary: #6B7280;
   /* Gray-500 */
   --primary-color: #007AFF;
-  --border-color: #E5E7EB;
+  --border-color: #F3F4F6;
+  /* Lighter Border (Step 1) */
   --bg-color: #FFFFFF;
   --radius: 12px;
-  --card-shadow-selected: 0 8px 24px rgba(0, 0, 0, 0.06);
-  /* Global Soft Shadow */
+  --card-shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.04);
+  /* Soft Shadow (Step 2) */
 }
 
 body {
@@ -21,7 +22,6 @@ body {
   line-height: 1.5;
   margin: 0;
   font-weight: 400;
-  /* Explicit base weight */
 }
 
 /* Layout */
@@ -48,8 +48,8 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 100px;
-  /* Increased vertical rhythm */
+  gap: 120px;
+  /* Increased Vertical Space (Step 5) */
   width: 100%;
   max-width: 680px;
   /* Constrain primary column */
@@ -72,12 +72,12 @@ body {
   gap: 24px;
 }
 
-/* Headings Upgrade (2249) */
+/* Headings Upgrade */
 .checkout-section h2,
 .section-heading {
   font-size: 1.5rem;
-  /* Increased from 1.25rem */
-  font-weight: 600;
+  font-weight: 500;
+  /* Reduced Weight (Step 4) */
   color: var(--text-primary);
   margin: 0;
   letter-spacing: -0.01em;
@@ -90,7 +90,8 @@ body {
 
 .welcome-section h2 {
   font-size: 1.75rem;
-  /* Increased from 1.5rem */
+  font-weight: 500;
+  /* Reduced Weight (Step 4) */
   margin-bottom: 8px;
   letter-spacing: -0.02em;
 }
@@ -130,8 +131,10 @@ input[type="radio"] {
   display: flex;
   align-items: center;
   /* Vertically centered */
-  gap: 20px;
-  padding: 20px;
+  gap: 16px;
+  /* Reduced Gap (Step 5) */
+  padding: 16px;
+  /* Reduced Padding (Step 5) */
   border: none;
   border-radius: var(--radius);
   cursor: pointer;
@@ -143,13 +146,15 @@ input[type="radio"] {
 
 .radio-card:hover {
   background-color: transparent;
-  /* Removed tint (2251) */
 }
 
-/* Selected State - Accent Outline (Shadow-based) */
+/* Selected State - Soft Shadow + Neutral Background (Step 2 & 3) */
 .radio-card:has(input:checked) {
   border: none;
-  box-shadow: 0 0 0 2px var(--primary-color);
+  background: #F9FAFB;
+  /* Neutral Background */
+  box-shadow: var(--card-shadow-soft);
+  /* Extremely Soft Shadow */
   z-index: 1;
 }
 
@@ -160,7 +165,6 @@ input[type="radio"] {
 .radio-title {
   font-size: 1.125rem;
   font-weight: 500;
-  /* Reduced weight (2249) */
   color: var(--text-primary);
   display: block;
 }
@@ -175,7 +179,6 @@ input[type="radio"] {
 .radio-price {
   font-size: 1rem;
   font-weight: 400;
-  /* Reduced weight (2249) */
   color: var(--text-primary);
   white-space: nowrap;
 }
@@ -188,9 +191,10 @@ input[type="radio"] {
 }
 
 .tag-card {
-  /* Border and Background Removed for Visual Lightness */
+  /* Border and Background Removed */
   border-radius: var(--radius);
-  padding: 20px;
+  padding: 16px;
+  /* Reduced Padding (Step 5) */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -200,20 +204,19 @@ input[type="radio"] {
 }
 
 .tag-card:hover {
-  /* No hover border */
+  /* No hover */
 }
 
-/* Selected State - Accent Outline (Shadow-based) + Background */
+/* Selected State - Soft Shadow + Neutral Background */
 .tag-card.has-qty {
   border: none;
-  background: white;
-  box-shadow: 0 0 0 2px var(--primary-color);
+  background: #F9FAFB;
+  box-shadow: var(--card-shadow-soft);
 }
 
 .tag-info h3 {
   font-size: 1rem;
   font-weight: 500;
-  /* Reduced weight (2249) */
   margin: 0 0 8px;
   color: var(--text-primary);
 }
@@ -235,7 +238,6 @@ input[type="radio"] {
 
 .tag-unit-price {
   font-weight: 400;
-  /* Reduced weight (2249) */
   color: var(--text-primary);
   font-size: 0.95rem;
 }
@@ -289,7 +291,6 @@ input[type="radio"] {
 .addon-group h3 {
   font-size: 0.875rem;
   font-weight: 500;
-  /* Reduced weight (2249) */
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--text-tertiary);
@@ -335,7 +336,6 @@ input[type="radio"] {
 .radio-row .price {
   color: var(--text-secondary);
   font-weight: 400;
-  /* Reduced weight (2249) */
 }
 
 /* Check Circle Alignment */
@@ -343,16 +343,18 @@ input[type="radio"] {
   content: '';
   width: 20px;
   height: 20px;
-  border: 2px solid var(--border-color);
+  border: 1px solid var(--border-color);
+  /* Thinner border 1px (Step 1) */
   border-radius: 50%;
   margin-left: 16px;
   box-sizing: border-box;
   flex-shrink: 0;
 }
 
+/* Checkmark - Neutral Color (Step 3) */
 .radio-row:has(input:checked)::after {
-  border-color: var(--primary-color);
-  background-color: var(--primary-color);
+  border-color: var(--text-primary);
+  background-color: var(--text-primary);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
   background-size: 14px;
   background-repeat: no-repeat;
@@ -363,7 +365,8 @@ input[type="radio"] {
 .sticky-summary {
   position: sticky;
   top: 32px;
-  padding: 20px;
+  padding: 16px;
+  /* Reduced Padding */
   border: none;
   border-radius: var(--radius);
 }
@@ -491,16 +494,15 @@ input[type="radio"] {
     align-items: center;
     padding: 16px 20px;
     background: #FFFFFF;
-    /* Pure white (2250) */
     border-top: 1px solid var(--border-color);
-    /* Thin divider (2250) */
+    /* Thinner (Step 1) */
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
     box-sizing: border-box;
     z-index: 900;
-    /* No shadow (2250/2251) */
+    /* No shadow */
   }
 
   /* Fixed CTA button */
@@ -513,7 +515,11 @@ input[type="radio"] {
     min-width: 140px;
     margin: 0;
     padding: 14px 24px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Step 2: "If a shadow remains... extremely soft". 
+       But Mobile CTA usually needs strong shadow for contrast over scrolling content?
+       Step 2 says "Reduce or remove... entirely."
+       I will use the soft shadow defined in root. */
+    box-shadow: var(--card-shadow-soft);
     z-index: 1000;
     border-radius: var(--radius);
   }
@@ -528,7 +534,6 @@ input[type="radio"] {
   .footer-total span:last-child {
     color: var(--text-primary);
     font-weight: 500;
-    /* Reassurance (2250) */
   }
 }
 
