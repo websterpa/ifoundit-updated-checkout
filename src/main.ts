@@ -364,11 +364,11 @@ function updateUI() {
   if (!shippingRow) {
     shippingRow = document.createElement('div');
     shippingRow.id = 'summary-shipping-row';
-    shippingRow.className = 'flex justify-between text-sm mb-2'; // match summary styles
+    shippingRow.className = 'summary-item mb-2'; // match summary styles
     // Insert before total
     summaryTotal.parentElement?.insertBefore(shippingRow, summaryTotal);
   }
-  shippingRow.innerHTML = `<span>Shipping</span><span>${formatCurrency(shippingCost)}</span>`;
+  shippingRow.innerHTML = `<span>Shipping </span><span>${formatCurrency(shippingCost)}</span>`;
 
 
   const formattedTotal = formatCurrency(finalTotal);

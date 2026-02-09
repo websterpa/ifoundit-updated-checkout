@@ -95,7 +95,7 @@ export function calculateTotal(state: CartState): {
     const boltOnItems: { name: string, price: number }[] = [];
     if (state.finderRewards > 0) {
         boltOnItems.push({
-            name: state.finderRewards === 1 ? '£20 Credit' : '2 × £20 Credits',
+            name: state.finderRewards === 1 ? '£ 20 Credit' : '2 × £ 20 Credits',
             price: finderCost
         });
     }
