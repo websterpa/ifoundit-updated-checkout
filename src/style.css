@@ -275,27 +275,27 @@ input[type="radio"] {
 .disclosure-panel {
   position: absolute;
   top: 0;
-  left: 84px;
-  /* 72px + 12px gap */
+  left: 72px;
+  /* Stabilise spatial relationship: overlaps/touches trigger */
   width: 220px;
   background: white;
   padding: 16px;
   border-radius: 8px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  /* Calm shadow */
   border: 1px solid rgba(0, 0, 0, 0.05);
   z-index: 100;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s ease, visibility 0.2s ease;
-  pointer-events: none;
-  /* purely visual disclosure */
+  /* visibility: hidden; Removed to preserve screen reader visibility */
+  transition: opacity 0.2s ease;
+  /* pointer-events: none; Removed to fix hover tunnel failure */
   text-align: left;
 }
 
-.tag-image-container:hover .disclosure-panel {
+.tag-image-container:hover .disclosure-panel,
+.tag-image-container:focus-visible .disclosure-panel,
+.tag-image-container:focus-within .disclosure-panel {
   opacity: 1;
-  visibility: visible;
+  /* visibility: visible; Not explicitly needed if visibility hidden is removed, but harmless to keep if logic requires opacity toggle only */
 }
 
 .disclosure-panel h4 {
