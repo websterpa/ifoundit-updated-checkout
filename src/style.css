@@ -144,9 +144,7 @@ h1 {
 /* Shipping Helper Overrides */
 #shipping-section .section-subtext {
   margin-top: -16px;
-  /* Visual pull-up */
-  margin-bottom: -8px;
-  /* Visual pull-down */
+  margin-bottom: 16px;
 }
 
 /* Capacity Cards */
