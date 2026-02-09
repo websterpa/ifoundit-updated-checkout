@@ -688,6 +688,8 @@ function initializeSteps() {
 
 function updateStepUI() {
   const steps = document.querySelectorAll('.checkout-step');
+  const checkoutPage = document.querySelector('.checkout-page');
+
   steps.forEach(step => {
     const stepNum = parseInt(step.getAttribute('data-step') || '0', 10);
 
@@ -703,6 +705,15 @@ function updateStepUI() {
       step.classList.add('step-pending');
     }
   });
+
+  // Toggle payment-step-active class on shared container
+  if (checkoutPage) {
+    if (currentStep === 5) {
+      checkoutPage.classList.add('payment-step-active');
+    } else {
+      checkoutPage.classList.remove('payment-step-active');
+    }
+  }
 }
 
 

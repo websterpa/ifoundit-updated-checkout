@@ -924,3 +924,10 @@ input[type="radio"] {
   margin-bottom: 24px;
   pointer-events: none;
 }
+
+/* Payment Step Active - Order Summary Emphasis */
+.payment-step-active #order-summary {
+  background-color: #F5F7FA;
+  border-left: 2px solid rgba(0, 0, 0, 0.12);
+  padding-top: 24px;
+}
