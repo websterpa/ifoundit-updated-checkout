@@ -429,13 +429,8 @@ function init() {
   updateStaticCopy();
 
   ctaButton.addEventListener('click', async () => {
-    // Stepper Guard
-    // Allow steps 1, 2, 3, 4 to proceed. Block only if we are somehow beyond or invalid.
-    if (currentStep < 5) {
-      // Handled by the 'Advance' logic below, unless we return here.
-      // Actually the logic below is: if (currentStep < TOTAL_STEPS) advance; else submit.
-      // So we just need to ensure we don't return early.
-    }
+    // Only handle Payment logic if we are on the final step
+    if (currentStep < 5) return;
 
     if (ctaButton.disabled) return;
     checkoutError.hidden = true;
@@ -724,17 +719,6 @@ ctaButton.addEventListener('click', (e) => {
     }
     updateStepUI();
     updateCTA();
-  } else {
-    // Final Step - Submit / Pay
-    // Since we don't have real payment, just show an alert or let the existing form submit logic fail gracefully?
-    // The user global prompt says "Do NOT modify Stripe configuration".
-    // Existing code didn't have a submit handler visible in main.ts snippets I saw, 
-    // usually it's handled by a separate script or just form action?
-    // Assuming this is a prototype, we just stop here or log.
-    // But for "Literal Execution", let's just ensure we don't break.
-    // If it was a submit button before, we might need to trigger form submit.
-    const errorDiv = document.getElementById('checkout-error');
-    if (errorDiv) errorDiv.textContent = "Payment integration is not active in this demo.";
   }
 });
 
