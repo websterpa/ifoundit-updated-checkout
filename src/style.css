@@ -31,9 +31,18 @@ body {
   line-height: 1.5;
   margin: 0;
   font-weight: 400;
+  font-size: 16px;
+  /* Explicit base size */
 }
 
-/* Layout */
+h1 {
+  font-size: 28px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin: 0 0 24px 0;
+}
+
 /* Layout */
 .checkout-layout,
 .checkout-page {
@@ -98,48 +107,39 @@ body {
   }
 }
 
+
 /* Headings */
 .checkout-section h2,
 .section-heading {
-  font-size: 1.25rem;
+  font-size: 20px;
+  /* 1.25rem = 20px */
   font-weight: 500;
-  /* Reduced from 600 */
   color: var(--text-primary);
   margin: 0;
   margin-bottom: 8px;
-  /* Slightly tighter */
-  letter-spacing: 0;
-  /* Remove negative tracking */
+  letter-spacing: -0.01em;
 }
 
-/* Welcome Section - Exception: No Background */
-.welcome-section {
-  background: transparent;
-  padding: 0;
-  margin-bottom: 8px;
-  gap: 8px;
-}
-
-.welcome-section h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.welcome-section p {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-}
-
+/* Section Subtext / Secondary */
 .section-subtext {
   color: var(--text-secondary);
-  font-size: 0.875rem;
-  /* Smaller than header */
+  font-size: 14px;
+  font-weight: 400;
   margin: 0;
   max-width: 500px;
-  line-height: 1.4;
+  line-height: 1.5;
   opacity: 0.7;
-  /* De-emphasis */
+}
+
+/* Utility for prices */
+.tabular-nums,
+.tag-unit-price,
+#summary-base-plan-cost span:last-child,
+/* The price span */
+#summary-tags-subtotal,
+#summary-addons-cost,
+#summary-total {
+  font-variant-numeric: tabular-nums;
 }
 
 /* Shipping Helper Overrides */
@@ -765,8 +765,10 @@ input[type="radio"] {
 }
 
 #summary-total {
-  font-weight: 700;
+  font-weight: 600;
+  /* Primary total limit */
   font-size: 1.125rem;
+  /* 18px */
   margin-top: 24px;
   padding-top: 16px;
   border-top: 1px solid var(--border-color);
