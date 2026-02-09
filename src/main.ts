@@ -749,7 +749,7 @@ function updateCTA() {
   } else if (currentStep === 4) {
     ctaButton.textContent = "Continue to Payment";
   } else if (currentStep === 5) {
-    ctaButton.textContent = "Complete Order & Pay";
+    ctaButton.textContent = "Continue to Secure Payment";
   }
 }
 
