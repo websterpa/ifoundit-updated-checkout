@@ -226,76 +226,60 @@ function updateUI() {
 
   // --- Shipping Logic (Literal Execution) ---
   const shippingRates = {
-    standard: 3.49,
-    express: 4.99,
-    economy: 2.49
+    standard: 2.75,
+    express: 3.65,
+    special: 9.75
   };
 
   const currentMethod = (state as any).shippingMethod || 'standard';
-  const isEligibleForFreeExpress = subTotal > 30.00;
+  const isEligibleForFreeShipping = subTotal >= 30.00;
   const shippingHelperText = document.querySelector('#shipping-section .section-subtext');
   const shippingRadios = document.querySelectorAll('input[name="shippingMethod"]');
 
-  let shippingCost = shippingRates[currentMethod as keyof typeof shippingRates];
+  let shippingCost = shippingRates[currentMethod as keyof typeof shippingRates] || shippingRates.standard;
 
-  // Logic for Free Shipping Threshold (> £30)
-  if (isEligibleForFreeExpress && currentStep >= 4) {
+  // Logic for Free Shipping Threshold (≥ £30)
+  if (isEligibleForFreeShipping && currentStep >= 4) {
     shippingCost = 0;
-    // Force express in state if not already set, to ensure summary is correct
-    if ((state as any).shippingMethod !== 'express') {
-      (state as any).shippingMethod = 'express';
-    }
 
     if (shippingHelperText) {
-      shippingHelperText.textContent = "You are eligible for free 'Express Delivery (Tracked 24)' shipping";
+      shippingHelperText.textContent = "Free standard delivery (Tracked 48) applies to your order";
     }
-    shippingRadios.forEach(radio => {
-      const input = radio as HTMLInputElement;
-      input.disabled = true;
-      if (input.value === 'express') {
-        input.checked = true;
-      }
-    });
   } else {
-    // Reset helper text and radios if not eligible
+    // Reset helper text if not eligible
     if (shippingHelperText) {
       shippingHelperText.textContent = "Free shipping automatically applies on orders over £ 30";
     }
-    shippingRadios.forEach(radio => {
-      (radio as HTMLInputElement).disabled = false;
-    });
 
-    // Rule 5: shipping costs only added after Shipping section reached (Step 4)
+    // Shipping costs only added after Shipping section reached (Step 4)
     if (currentStep < 4) {
       shippingCost = 0;
     }
-
-    // 1-Tag Special Case: Standard delivery is free, Express is paid.
-    if (totalSelectedQuantity === 1) {
-      if (currentMethod === 'standard') {
-        shippingCost = 0;
-      }
-    }
   }
+
+  // Ensure radios are enabled when not eligible for free shipping
+  shippingRadios.forEach(radio => {
+    (radio as HTMLInputElement).disabled = isEligibleForFreeShipping && currentStep >= 4;
+  });
 
   // Update logic for UI labels
   const standardLabel = document.querySelector('input[value="standard"] + span');
   if (standardLabel) {
-    const isStandardFree = (totalSelectedQuantity === 1 && currentStep >= 4);
-    if (isStandardFree) {
-      standardLabel.textContent = "Free Standard Delivery (Tracked 48) — £ 0.00";
+    if (isEligibleForFreeShipping && currentStep >= 4) {
+      standardLabel.textContent = "Free Tracked 48 (Standard) — £ 0.00";
     } else {
-      standardLabel.textContent = "Standard Delivery (Tracked 48) — £ 3.49";
+      standardLabel.textContent = "Tracked 48 (Standard) — £ 2.75";
     }
   }
 
   const expressLabel = document.querySelector('input[value="express"] + span');
   if (expressLabel) {
-    if (isEligibleForFreeExpress && currentStep >= 4) {
-      expressLabel.textContent = "Free Express Delivery (Tracked 24) — £ 0.00";
-    } else {
-      expressLabel.textContent = "Express Delivery (Tracked 24) — £ 4.99";
-    }
+    expressLabel.textContent = "Tracked 24 (Express) — £ 3.65";
+  }
+
+  const specialLabel = document.querySelector('input[value="special"] + span');
+  if (specialLabel) {
+    specialLabel.textContent = "Special Delivery Guaranteed by 1pm — £ 9.75";
   }
 
   // Free Shipping Progress Message (Summary)
