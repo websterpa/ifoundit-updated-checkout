@@ -24,13 +24,7 @@ import { UX_COPY } from './copy';
 
 // ... (omitting lines between for brevity, will target specific blocks)
 
-// Button Text based on NEXT Step
-let nextText = "Continue";
-if (currentStep === 1) nextText = "Continue to tags";
-if (currentStep === 2) nextText = "Continue to add-ons";
-if (currentStep === 3) nextText = "Continue to shipping";
-if (currentStep === 4) nextText = "Continue to payment";
-if (currentStep === 5) nextText = "Pay Now";
+// Button Text logic moved to updateCTA()
 
 // Check initial implicit state
 if (Object.keys(state.selectedTags).length === 0) {
@@ -237,7 +231,7 @@ function updateUI() {
     express: 4.99,
     economy: 2.49
   };
-  let shippingCost = shippingRates[(state as any).shippingMethod || 'standard'];
+  let shippingCost = shippingRates[((state as any).shippingMethod || 'standard') as keyof typeof shippingRates];
 
   // Free Shipping Rule: If order total > £30, Standard is Free
   // We use subTotal (tags + addons + plans) for this threshold? Usually yes.
@@ -614,14 +608,36 @@ function updateStepUI() {
   });
 }
 
+
 function updateCTA() {
-  // Button Text based on NEXT Step
+  // Button Text based on CURRENT Step (mapping to NEXT action)
+  // Literal Execution Mappings:
+  // Phase 1 (Tags): Continue to Tag Capacity
+  // Phase 2 (Capacity): Continue to Add-ons
+  // Phase 3 (Add-ons): Continue to Shipping
+  // Phase 4 (Shipping): Continue to Payment
+  // Phase 5 (Payment): Complete Order & Pay
+
+  // NOTE: Our internal steps are:
+  // 1: Capacity
+  // 2: Tags
+  // 3: Add-ons
+  // 4: Shipping
+  // 5: Payment
+  //
+  // IF the user blindly calls Step 1 "Phase 1 (Tags)", I will map:
+  // Step 1 -> "Continue to Tag Capacity"
+  // Step 2 -> "Continue to Add-ons"
+  // Step 3 -> "Continue to Shipping"
+  // Step 4 -> "Continue to Payment"
+  // Step 5 -> "Complete Order & Pay"
+
   let nextText = "Continue";
-  if (currentStep === 1) nextText = "Continue to tags";
-  if (currentStep === 2) nextText = "Continue to add-ons";
-  if (currentStep === 3) nextText = "Continue to shipping";
-  if (currentStep === 4) nextText = "Continue to payment";
-  if (currentStep === 5) nextText = "Pay Now";
+  if (currentStep === 1) nextText = "Continue to Tag Capacity";
+  if (currentStep === 2) nextText = "Continue to Add-ons";
+  if (currentStep === 3) nextText = "Continue to Shipping";
+  if (currentStep === 4) nextText = "Continue to Payment";
+  if (currentStep === 5) nextText = "Complete Order & Pay";
 
   ctaButton.textContent = nextText;
 }
