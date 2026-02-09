@@ -338,6 +338,9 @@ function updateUI() {
   } else {
     ctaButton.title = '';
   }
+
+  // Refresh CTA text based on current state and step
+  updateCTA();
 }
 
 // Handle changes
@@ -661,7 +664,7 @@ function updateCTA() {
   const isValid = totalSelectedQuantity >= 1 && totalSelectedQuantity <= state.tagCapacity;
 
   if (currentStep === 1) {
-    if (totalSelectedQuantity === 1) {
+    if (state.tagCapacity === 1) {
       ctaButton.textContent = "Go To Shipping Options";
     } else {
       ctaButton.textContent = "Select Your Tag Types & Quantity";
