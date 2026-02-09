@@ -749,10 +749,14 @@ input[type="radio"] {
 .summary-section-label {
   font-weight: 500;
   opacity: 0.7;
-  margin-top: 20px;
-  margin-bottom: 8px;
+  margin-top: 28px;
+  margin-bottom: 12px;
   font-size: 14px;
   color: var(--text-primary);
+}
+
+.summary-section-label:first-of-type {
+  margin-top: 0;
 }
 
 /* Label raw value divs using CSS to avoid JS modifications */
@@ -771,14 +775,12 @@ input[type="radio"] {
   margin-bottom: 8px;
 }
 
-#summary-base-plan-cost::before {}
-
 #summary-tags-subtotal,
 #summary-addons-cost {
   font-size: 14px;
   color: var(--text-tertiary);
-  margin-top: 8px;
-  padding-top: 8px;
+  margin-top: 16px;
+  padding-top: 12px;
   border-top: 1px dashed var(--border-color);
 }
 
@@ -798,11 +800,9 @@ input[type="radio"] {
 
 #summary-total {
   font-weight: 500;
-  /* Primary total limit */
   font-size: 18px;
-  /* 18px */
-  margin-top: 24px;
-  padding-top: 16px;
+  margin-top: 32px;
+  padding-top: 20px;
   border-top: 1px solid var(--border-color);
   color: var(--text-primary);
 }
