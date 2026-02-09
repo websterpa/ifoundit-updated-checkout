@@ -358,6 +358,14 @@ function handleChange(event: Event) {
         });
       }
 
+      // Enforce Capacity 1 Rule (Prompt 3697)
+      if (newCapacity === 1) {
+        const currentTotal = Object.values(state.selectedTags).reduce((a, b) => a + b, 0);
+        if (currentTotal > 1) {
+          state.selectedTags = { 'halo': 1 };
+        }
+      }
+
       state.tagCapacity = newCapacity;
 
       // Check for Implicit Halo Applied (downgrade or change to 1 with no tags)
