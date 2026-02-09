@@ -660,3 +660,60 @@ input[type="radio"] {
   text-decoration: none;
   color: inherit;
 }
+
+/* Order Summary Hierarchy & Labels */
+.summary-section-label {
+  font-weight: 600;
+  opacity: 0.8;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+
+/* Label raw value divs using CSS to avoid JS modifications */
+#summary-base-plan-cost,
+#summary-tags-subtotal,
+#summary-addons-cost,
+#summary-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#summary-base-plan-cost {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+#summary-base-plan-cost::before {
+  content: "Base Plan";
+}
+
+#summary-tags-subtotal,
+#summary-addons-cost {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--border-color);
+}
+
+#summary-tags-subtotal::before,
+#summary-addons-cost::before {
+  content: "Subtotal";
+}
+
+#summary-total {
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-primary);
+}
+
+#summary-total::before {
+  content: "Total";
+}
