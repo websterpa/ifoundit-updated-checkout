@@ -292,7 +292,13 @@ function updateUI() {
   `).join('');
 
   // Update Summary Totals
-  summaryBasePlan.textContent = formatCurrency(basePlanCost);
+  // Dynamic Plan Label Logic
+  let planLabel = "Essential Plan";
+  if (totalSelectedQuantity > 1) {
+    planLabel = boltOnItems.length > 0 ? "Essential Plus – Add Ons" : "Essential Plus";
+  }
+
+  summaryBasePlan.innerHTML = `<span>${planLabel}</span><span>${formatCurrency(basePlanCost)}</span>`;
   summaryTagsSubtotal.textContent = formatCurrency(rawTagsCost);
   summaryAddons.textContent = formatCurrency(addOnsCost);
 
