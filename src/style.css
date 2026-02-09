@@ -896,9 +896,9 @@ input[type="radio"] {
 
 /* Payment Section Handoff Styling */
 #payment-section {
-  padding-top: 32px;
+  padding-top: 24px;
   padding-bottom: 32px;
-  margin-top: 48px;
+  margin-top: 40px;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
@@ -913,6 +913,7 @@ input[type="radio"] {
   line-height: 1.5;
   margin-top: 8px;
   margin-bottom: 0;
+  opacity: 0.85;
 }
 
 /* Step Indicator */
