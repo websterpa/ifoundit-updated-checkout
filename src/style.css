@@ -28,17 +28,16 @@ body {
   font-family: var(--font-family);
   background-color: var(--bg-color);
   color: var(--text-primary);
-  line-height: 1.5;
+  line-height: 1.6;
   margin: 0;
   font-weight: 400;
-  font-size: 16px;
-  /* Explicit base size */
+  font-size: 14px;
 }
 
 h1 {
   font-size: 28px;
   font-weight: 600;
-  letter-spacing: -0.02em;
+  line-height: 1.25;
   color: var(--text-primary);
   margin: 0 0 24px 0;
 }
@@ -111,13 +110,13 @@ h1 {
 /* Headings */
 .checkout-section h2,
 .section-heading {
-  font-size: 20px;
-  /* 1.25rem = 20px */
+  font-size: 18px;
   font-weight: 500;
+  line-height: 1.4;
   color: var(--text-primary);
   margin: 0;
   margin-bottom: 8px;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 /* Section Subtext / Secondary */
@@ -127,7 +126,7 @@ h1 {
   font-weight: 400;
   margin: 0;
   max-width: 500px;
-  line-height: 1.5;
+  line-height: 1.6;
   opacity: 0.7;
 }
 
