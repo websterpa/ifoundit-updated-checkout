@@ -658,11 +658,26 @@ function updateCTA() {
   // Step 5 -> "Complete Order & Pay"
 
   const { totalSelectedQuantity } = calculateTotal(state);
+  const isValid = totalSelectedQuantity >= 1 && totalSelectedQuantity <= state.tagCapacity;
 
-  if (totalSelectedQuantity === 1) {
-    ctaButton.textContent = "Go To Shipping Options";
-  } else if (totalSelectedQuantity > 1) {
-    ctaButton.textContent = "Select Your Tag Types & Quantity";
+  if (currentStep === 1) {
+    if (totalSelectedQuantity === 1) {
+      ctaButton.textContent = "Go To Shipping Options";
+    } else {
+      ctaButton.textContent = "Select Your Tag Types & Quantity";
+    }
+  } else if (currentStep === 2) {
+    if (isValid) {
+      ctaButton.textContent = "Continue to Select Your Add-Ons (Lost Item Shipping Credits and Finder Rewards)";
+    } else {
+      ctaButton.textContent = "Select Your Tag Types & Quantity";
+    }
+  } else if (currentStep === 3) {
+    ctaButton.textContent = "Continue to Shipping";
+  } else if (currentStep === 4) {
+    ctaButton.textContent = "Continue to Payment";
+  } else if (currentStep === 5) {
+    ctaButton.textContent = "Complete Order & Pay";
   }
 }
 
