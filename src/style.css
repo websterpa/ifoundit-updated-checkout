@@ -142,6 +142,14 @@ body {
   /* De-emphasis */
 }
 
+/* Shipping Helper Overrides */
+#shipping-section .section-subtext {
+  margin-top: -16px;
+  /* Visual pull-up */
+  margin-bottom: -8px;
+  /* Visual pull-down */
+}
+
 /* Capacity Cards */
 .capacity-options {
   display: flex;
@@ -220,54 +228,76 @@ input[type="radio"] {
   white-space: nowrap;
 }
 
-/* Tag Grid */
+
+/* Tag Grid - Compact 3-Column Layout */
+#tag-types-grid,
 .tag-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  /* Tighter Grid */
-  gap: 12px;
+  grid-template-columns: 1fr;
+  gap: 16px;
 }
 
+@media (min-width: 640px) {
+
+  #tag-types-grid,
+  .tag-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+
+  #tag-types-grid,
+  .tag-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tag Card - Compact Vertical Tile */
 .tag-card {
+  border: 1px solid var(--border-color);
   border-radius: var(--radius);
   padding: 16px;
   display: flex;
   flex-direction: column;
+  /* Stack vertically */
   justify-content: space-between;
-  transition: background-color 0.15s ease-out;
-  min-height: 160px;
-  background: #F9FAFB;
-  /* Subtle differentiation nested in white card? Or keep white on white? Prompt says white on #fafafa page. */
-  /* Actually prompt says "Use background color change ONLY for selected state". */
-  /* So tag-card default should be transparent or same as section? */
-  /* Let's make tag-card subtle grey to stand out on the white section background? */
-  background: #F3F4F6;
-  /* Extremely subtle card within card */
+  transition: all 0.2s ease;
+  min-height: 280px;
+  /* Consistent height for alignment */
+  background: var(--surface-color);
+  gap: 12px;
 }
 
 /* Override Tag Card for cleaner look on white surface */
-.tag-card {
-  background: transparent;
-  border: 1px solid transparent;
-  /* Reserve space */
+.tag-card:hover {
+  border-color: #D1D5DB;
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow-soft);
 }
 
-/* Product Image */
+
 /* Product Image & Disclosure Container */
 .tag-image-container {
   position: relative;
-  width: 72px;
-  /* Constraint wrapper */
-  margin-bottom: 12px;
+  width: 100%;
+  /* Full width of card */
+  height: 120px;
+  /* Constrained height */
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+
 .tag-card img {
-  width: 100%;
-  /* Fill container */
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
   height: auto;
   object-fit: contain;
   margin-bottom: 0;
-  /* Spacing handled by container */
   display: block;
 }
 
@@ -492,6 +522,17 @@ input[type="radio"] {
   margin: 0;
 }
 
+/* Prompt 4: Refined Order Summary Hierarchy */
+.summary-section-label {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-tertiary);
+  font-weight: 600;
+}
+
 .summary-item,
 .summary-row {
   display: flex;
@@ -499,30 +540,41 @@ input[type="radio"] {
   font-size: 0.9rem;
   color: var(--text-secondary);
   font-weight: 400;
-  opacity: 0.9;
-  /* Slight de-emphasis */
+  opacity: 0.8;
+  /* De-emphasise rows */
 }
 
 .summary-item .price,
 .summary-row .price {
   font-feature-settings: "tnum";
-  /* Tabular figures for alignment */
 }
 
 .summary-total {
   display: flex;
   justify-content: space-between;
-  margin-top: 16px;
-  padding-top: 24px;
-  border-top: 1px solid #F3F4F6;
-  font-size: 1.125rem;
-  font-weight: 600;
+  margin-top: 32px;
+  /* Increased separation */
+  padding-top: 20px;
+  border-top: 2px solid var(--border-color);
+  /* Stronger separator */
+  font-size: 1.25rem;
+  /* Larger total */
+  font-weight: 800;
+  /* Bolder total */
   color: var(--text-primary);
   letter-spacing: -0.01em;
+  opacity: 1;
+  /* Anchor visibility */
 }
 
 .summary-total span:last-child {
   color: var(--text-primary);
+}
+
+/* CTA Wrapper (Prompt 3) */
+.form-actions {
+  margin-top: 32px;
+  width: 100%;
 }
 
 /* CTA */
@@ -718,34 +770,7 @@ input[type="radio"] {
   content: "Total";
 }
 
-/* Sticky System Stepper */
-.checkout-sticky {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: var(--surface-color);
-  border-top: 1px solid var(--border-color);
-  padding: 16px 24px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  /* Align to right/center interaction zone */
-  gap: 24px;
-  z-index: 100;
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
-  box-sizing: border-box;
-}
 
-#sticky-total {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-feature-settings: "tnum";
-}
 
 #sticky-total::before {
   content: "Total due:";
@@ -805,4 +830,29 @@ input[type="radio"] {
     width: auto;
     flex: 0 0 auto;
   }
+}
+
+/* Sequential Step Logic */
+.checkout-step {
+  display: none;
+  /* Default hidden */
+  /* Remove animations */
+  transition: none;
+  animation: none;
+}
+
+.checkout-step.step-active {
+  display: block;
+  /* Only active is visible */
+}
+
+/* Ensure pending and completed are hidden */
+.checkout-step.step-pending,
+.checkout-step.step-completed {
+  display: none !important;
+}
+
+/* Remove Edit overlay since steps are hidden */
+.checkout-step.step-completed::after {
+  content: none;
 }

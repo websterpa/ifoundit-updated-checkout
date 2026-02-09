@@ -22,7 +22,7 @@
 
       <form id="checkout-form">
 
-        <section id="capacity-selector">
+        <section id="capacity-selector" class="checkout-step" data-step="1">
           <h2>1. How many things do I want to protect?</h2>
           <div id="max-capacity-count"></div>
 
@@ -61,7 +61,7 @@
           </div>
         </section>
 
-        <section id="tag-selector">
+        <section id="tag-selector" class="checkout-step" data-step="2">
           <h2>2. Select your tags</h2>
           <p class="section-subtext">Hover on the image for more info</p>
           <div id="tag-types-grid"></div>
@@ -70,7 +70,7 @@
           </div>
         </section>
 
-        <section id="addons-selector">
+        <section id="addons-selector" class="checkout-step" data-step="3">
           <h2>3. Optional add-ons</h2>
 
           <div class="addons-grid">
@@ -133,11 +133,33 @@
           </div>
         </section>
 
-        <section id="payment-section">
-          <h2>4. Payment</h2>
+        <section id="shipping-section" class="checkout-step" data-step="4">
+          <h2>4. Shipping</h2>
+          <p class="section-subtext">Free shipping automatically applies on orders over £30</p>
+          <div class="radio-stack">
+            <label class="radio-row">
+              <input type="radio" name="shippingMethod" value="standard" checked>
+              <span>Standard Delivery (Tracked 48) — £3.49</span>
+            </label>
+            <label class="radio-row">
+              <input type="radio" name="shippingMethod" value="express">
+              <span>Express Delivery (Tracked 24) — £4.99</span>
+            </label>
+            <label class="radio-row">
+              <input type="radio" name="shippingMethod" value="economy">
+              <span>Economy Delivery (Untracked) — £2.49</span>
+            </label>
+          </div>
+        </section>
+
+        <section id="payment-section" class="checkout-step" data-step="5">
+          <h2>5. Payment</h2>
           <div id="checkout-error"></div>
         </section>
 
+        <div class="form-actions">
+          <button id="cta-button" type="button" class="primary-cta">Continue</button>
+        </div>
       </form>
     </section>
 
@@ -158,10 +180,6 @@
       </section>
     </aside>
 
-    <footer class="checkout-sticky">
-      <div id="sticky-total"></div>
-      <button id="cta-button" type="button">Continue</button>
-    </footer>
 
   </main>
   <script type="module" src="/src/main.ts"></script>
