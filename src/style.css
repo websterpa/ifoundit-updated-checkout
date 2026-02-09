@@ -538,7 +538,7 @@ input[type="radio"] {
 /* Order Summary */
 .sticky-summary {
   position: sticky;
-  top: 32px;
+  top: 64px;
   padding: 24px;
   border-radius: var(--radius);
   background: #FFFFFF;
@@ -547,8 +547,7 @@ input[type="radio"] {
   flex-direction: column;
   gap: 24px;
   align-self: flex-start;
-  /* Visually anchor to top */
-  margin-top: 0;
+  margin-top: 64px;
 }
 
 .summary-list {
