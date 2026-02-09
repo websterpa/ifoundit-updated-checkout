@@ -639,7 +639,7 @@ function updateCTA() {
   // Step 5 -> "Complete Order & Pay"
 
   let nextText = "Continue";
-  if (currentStep === 1) nextText = "Continue to Tag Capacity";
+  if (currentStep === 1) nextText = "Continue to Select Your Tags";
   if (currentStep === 2) nextText = "Continue to Add-ons";
   if (currentStep === 3) nextText = "Continue to Shipping";
   if (currentStep === 4) nextText = "Continue to Payment";
