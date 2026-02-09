@@ -1,4 +1,11 @@
 /* VISUAL LOCK: Stripe-calm checkout. Subtle structure via spacing and soft backgrounds. No borders. */
+
+/* VISUAL LOCK: Hide stray numeric counters */
+#max-capacity-count,
+#current-selection-count {
+  display: none !important;
+}
+
 :root {
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
   --text-primary: #1F2937;
