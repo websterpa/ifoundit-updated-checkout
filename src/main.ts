@@ -231,22 +231,33 @@ function updateUI() {
     express: 4.99,
     economy: 2.49
   };
-  let shippingCost = shippingRates[((state as any).shippingMethod || 'standard') as keyof typeof shippingRates];
+
+  const currentMethod = (state as any).shippingMethod || 'standard';
+  let shippingCost = shippingRates[currentMethod as keyof typeof shippingRates];
 
   // Rule 5: shipping costs only added after Shipping section reached (Step 4)
   if (currentStep < 4) {
     shippingCost = 0;
   }
 
-  // Free Shipping Rule: If order total > £30, Standard is Free
-  if (subTotal > 30.00 && (state as any).shippingMethod === 'standard' && currentStep >= 4) {
+  // 1-Tag Special Case: Standard delivery is free, Express is paid.
+  // This satisfies Rule 4 (Total = 3.99 for 1-tag) while allowing dynamic updates for Express.
+  if (totalSelectedQuantity === 1) {
+    if (currentMethod === 'standard') {
+      shippingCost = 0;
+    }
+  }
+
+  // Free Shipping Threshold Rule (> £30)
+  if (subTotal > 30.00 && currentMethod === 'standard' && currentStep >= 4) {
     shippingCost = 0.00;
   }
 
-  // Update Standard delivery labels
+  // Update logic for UI labels
   const standardLabel = document.querySelector('input[value="standard"] + span');
   if (standardLabel) {
-    if (subTotal > 30.00 && currentStep >= 4) {
+    const isFree = (subTotal > 30.00 && currentStep >= 4) || totalSelectedQuantity === 1;
+    if (isFree) {
       standardLabel.textContent = "Free Standard Delivery (Tracked 48) — £0.00";
     } else {
       standardLabel.textContent = "Standard Delivery (Tracked 48) — £3.49";
@@ -265,12 +276,12 @@ function updateUI() {
     }
   }
 
+  // Final Total calculation including the reactive shipping cost
   let finalTotal = subTotal + shippingCost;
 
-  // Rule 4: If exactly 1 tag selected, total is strictly 3.99
-  if (totalSelectedQuantity === 1) {
+  // Final sanity check for Step 1 total override (pre-shipping)
+  if (totalSelectedQuantity === 1 && currentStep < 4) {
     finalTotal = 3.99;
-    shippingCost = 0;
   }
 
   // Update counters
