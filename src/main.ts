@@ -706,7 +706,11 @@ ctaButton.addEventListener('click', (e) => {
 
   // 2. Advance
   if (currentStep < TOTAL_STEPS) {
-    currentStep++;
+    if (currentStep === 1 && state.tagCapacity === 1) {
+      currentStep = 4; // Jump straight to Shipping
+    } else {
+      currentStep++;
+    }
     updateStepUI();
     updateCTA();
   } else {
