@@ -22,8 +22,7 @@
 
 .brand-header {
   display: block;
-  margin-bottom: 32px;
-  text-decoration: none;
+  margin-bottom: 16px;
 }
 
 .brand-logo {
@@ -366,49 +365,19 @@ input[type="radio"] {
   display: block;
 }
 
-/* Hover Disclosure Panel */
-.disclosure-panel {
-  position: absolute;
-  top: 0;
-  left: 72px;
-  /* Stabilise spatial relationship: overlaps/touches trigger */
-  width: 220px;
-  background: white;
-  padding: 16px;
-  border-radius: 8px;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  z-index: 100;
-  opacity: 0;
-  /* visibility: hidden; Removed to preserve screen reader visibility */
-  transition: opacity 0.2s ease;
-  /* pointer-events: none; Removed to fix hover tunnel failure */
-  text-align: left;
+/* Tag Details (Fixed) */
+.tag-details {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.tag-image-container:hover .disclosure-panel,
-.tag-image-container:focus-visible .disclosure-panel,
-.tag-image-container:focus-within .disclosure-panel {
-  opacity: 1;
-  /* visibility: visible; Not explicitly needed if visibility hidden is removed, but harmless to keep if logic requires opacity toggle only */
-}
-
-.disclosure-panel h4 {
-  font-size: 14px;
-  font-weight: 500;
-  margin: 0 0 8px 0;
-  color: #111827;
-}
-
-.disclosure-panel p {
-  font-size: 12px;
+.detail-line {
+  font-size: 11px;
+  color: var(--text-tertiary);
   line-height: 1.4;
-  color: #4B5563;
-  margin: 0 0 8px 0;
-}
-
-.disclosure-panel p:last-child {
-  margin-bottom: 0;
+  text-align: left;
 }
 
 .tag-card:hover {

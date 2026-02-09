@@ -131,15 +131,14 @@ function renderTagTypes() {
         <div class="tag-info">
           <div class="tag-image-container">
             <img src="/assets/tag-${tag.id}.png" alt="${tag.name} Tag" class="tag-image">
-            <div class="disclosure-panel">
-              <h4>${tag.name}</h4>
-              <p><strong>Size:</strong> ${TAG_METADATA[tag.id]?.size}</p>
-              <p><strong>Material:</strong> ${TAG_METADATA[tag.id]?.material}</p>
-              <p><strong>How it works:</strong> ${TAG_METADATA[tag.id]?.howItWorks}</p>
-            </div>
           </div>
           <h3>${tag.name}</h3>
           <p>${tag.descriptor}</p>
+          <div class="tag-details">
+            <div class="detail-line">Size: ${TAG_METADATA[tag.id]?.size}</div>
+            <div class="detail-line">Material: ${TAG_METADATA[tag.id]?.material}</div>
+            <div class="detail-line">How it works: ${TAG_METADATA[tag.id]?.howItWorks}</div>
+          </div>
         </div>
 
         <div class="tag-price-row">
