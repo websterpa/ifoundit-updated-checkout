@@ -47,6 +47,39 @@ const checkoutError = document.getElementById('checkout-error')!;
 // Format currency
 const formatCurrency = (amount: number) => `£${amount.toFixed(2)}`;
 
+const TAG_METADATA: Record<string, { size: string; material: string; howItWorks: string }> = {
+  halo: {
+    size: '29mm',
+    material: 'PET plastic construction, water resistant',
+    howItWorks: 'Attach the sticker to your item, and if found, anyone with a smartphone can scan it to notify you securely.'
+  },
+  orbit: {
+    size: '30mm Diameter',
+    material: 'Durable, scratch-resistant double sided epoxy',
+    howItWorks: 'Attach it to your valuables, giving the person who finds your items the best chance of returning them to you.'
+  },
+  pulse: {
+    size: '54mm x 85.6mm (Standard CR80 size)',
+    material: 'High quality PVC',
+    "howItWorks": 'Finders can scan the card to reach you via our secure iFoundIt reporting system, without needing to expose your personal details.'
+  },
+  echo: {
+    size: '18mm x 50mm',
+    material: 'Durable, scratch-resistant double sided epoxy',
+    howItWorks: 'Attach to your keyring. If lost, anyone who finds your keys can scan the fob to securely contact you.'
+  },
+  trek: {
+    size: '55mm x 27mm',
+    material: '1mm thick, weatherproof, heavy duty PVC',
+    howItWorks: 'Attach to your bag’s handle or zipper, and a simple smartphone scan allows finders to connect with you indirectly.'
+  },
+  roam: {
+    size: '56mm x 28mm',
+    material: '1.2mm thick, weatherproof, heavy duty PVC',
+    howItWorks: 'Attach to your bag’s handle or zipper, and a simple smartphone scan allows finders to connect with you indirectly.'
+  }
+};
+
 // Inject Copy Updates
 function updateStaticCopy() {
   // Update Tag Selection Helper
@@ -88,7 +121,15 @@ function renderTagTypes() {
     return `
       <div class="tag-card ${isAtCapacity ? 'at-capacity' : ''} ${qty > 0 ? 'has-qty' : ''}" data-id="${tag.id}">
         <div class="tag-info">
-          <img src="/assets/tag-${tag.id}.png" alt="${tag.name} Tag" class="tag-image">
+          <div class="tag-image-container">
+            <img src="/assets/tag-${tag.id}.png" alt="${tag.name} Tag" class="tag-image">
+            <div class="disclosure-panel">
+              <h4>${tag.name}</h4>
+              <p><strong>Size:</strong> ${TAG_METADATA[tag.id]?.size}</p>
+              <p><strong>Material:</strong> ${TAG_METADATA[tag.id]?.material}</p>
+              <p><strong>How it works:</strong> ${TAG_METADATA[tag.id]?.howItWorks}</p>
+            </div>
+          </div>
           <h3>${tag.name}</h3>
           <p>${tag.descriptor}</p>
         </div>

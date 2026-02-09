@@ -246,11 +246,67 @@ input[type="radio"] {
 }
 
 /* Product Image */
-.tag-card img {
+/* Product Image & Disclosure Container */
+.tag-image-container {
+  position: relative;
   width: 72px;
+  /* Constraint wrapper */
+  margin-bottom: 12px;
+}
+
+.tag-card img {
+  width: 100%;
+  /* Fill container */
   height: auto;
   object-fit: contain;
-  margin-bottom: 12px;
+  margin-bottom: 0;
+  /* Spacing handled by container */
+  display: block;
+}
+
+/* Hover Disclosure Panel */
+.disclosure-panel {
+  position: absolute;
+  top: 0;
+  left: 84px;
+  /* 72px + 12px gap */
+  width: 220px;
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  /* Calm shadow */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  pointer-events: none;
+  /* purely visual disclosure */
+  text-align: left;
+}
+
+.tag-image-container:hover .disclosure-panel {
+  opacity: 1;
+  visibility: visible;
+}
+
+.disclosure-panel h4 {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #111827;
+}
+
+.disclosure-panel p {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #4B5563;
+  margin: 0 0 8px 0;
+}
+
+.disclosure-panel p:last-child {
+  margin-bottom: 0;
 }
 
 .tag-card:hover {
