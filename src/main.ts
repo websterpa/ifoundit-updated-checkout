@@ -250,9 +250,20 @@ function updateUI() {
     const standardLabel = document.querySelector('input[value="standard"] + span');
     if (standardLabel) standardLabel.textContent = "Free Standard Delivery (Tracked 48) — £0.00";
   } else {
-    // Revert label
     const standardLabel = document.querySelector('input[value="standard"] + span');
     if (standardLabel) standardLabel.textContent = "Standard Delivery (Tracked 48) — £3.49";
+  }
+
+  // Free Shipping Progress Message (Prompt 3509)
+  const freeShippingProgress = document.getElementById('free-shipping-progress');
+  if (freeShippingProgress) {
+    if (subTotal < 30.00) {
+      const remaining = 30.00 - subTotal;
+      freeShippingProgress.textContent = `£${remaining.toFixed(2)} away from free shipping`;
+      freeShippingProgress.hidden = false;
+    } else {
+      freeShippingProgress.hidden = true;
+    }
   }
 
   const finalTotal = subTotal + shippingCost;
