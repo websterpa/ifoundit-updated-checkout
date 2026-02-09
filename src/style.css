@@ -717,3 +717,92 @@ input[type="radio"] {
 #summary-total::before {
   content: "Total";
 }
+
+/* Sticky System Stepper */
+.checkout-sticky {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--surface-color);
+  border-top: 1px solid var(--border-color);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* Align to right/center interaction zone */
+  gap: 24px;
+  z-index: 100;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+}
+
+#sticky-total {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-feature-settings: "tnum";
+}
+
+#sticky-total::before {
+  content: "Total due:";
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-transform: none;
+  /* System text */
+  margin-right: 4px;
+}
+
+#cta-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  /* Medium/Standard radius */
+  padding: 0 24px;
+  /* Horizontal padding, height handles vertical */
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  height: 48px;
+  /* Standard touch target/form height */
+  min-width: 140px;
+  transition: background-color 0.2s;
+  /* Resetting any assumed promotional styles */
+  background-image: none;
+  box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#cta-button:hover {
+  background-color: #0069D9;
+  /* Simple darken */
+}
+
+#cta-button:disabled {
+  background-color: var(--border-color);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Mobile Adjustment for consistency */
+@media (max-width: 640px) {
+  .checkout-sticky {
+    justify-content: space-between;
+    /* Spaced out on small screens */
+    padding: 16px;
+    gap: 16px;
+  }
+
+  #cta-button {
+    width: auto;
+    flex: 0 0 auto;
+  }
+}
