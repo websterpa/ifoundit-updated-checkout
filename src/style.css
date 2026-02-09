@@ -929,5 +929,4 @@ input[type="radio"] {
 .payment-step-active #order-summary {
   background-color: #F5F7FA;
   border-left: 2px solid rgba(0, 0, 0, 0.12);
-  padding-top: 24px;
 }
