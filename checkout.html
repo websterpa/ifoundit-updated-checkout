@@ -43,7 +43,7 @@
               <div class="radio-content">
                 <span class="radio-title">Up to 3 tags</span>
               </div>
-              <div class="radio-price">£0.99 / year</div>
+              <div class="radio-price">£ 0.99 / year</div>
             </label>
 
             <label class="radio-card">
@@ -51,7 +51,7 @@
               <div class="radio-content">
                 <span class="radio-title">Up to 10 tags</span>
               </div>
-              <div class="radio-price">£1.99 / year</div>
+              <div class="radio-price">£ 1.99 / year</div>
             </label>
 
             <label class="radio-card">
@@ -59,12 +59,14 @@
               <div class="radio-content">
                 <span class="radio-title">Up to 20 tags</span>
               </div>
-              <div class="radio-price">£3.99 / year</div>
+              <div class="radio-price">£ 3.99 / year</div>
             </label>
           </div>
         </section>
 
         <section id="tag-selector" class="checkout-step" data-step="2">
+          <button type="button" class="back-link" data-to-step="1">Back to How many things do I want to
+            protect?</button>
           <h2>2. Select your tags</h2>
           <p class="section-subtext">Hover on the image for more info</p>
           <div id="tag-types-grid"></div>
@@ -74,12 +76,13 @@
         </section>
 
         <section id="addons-selector" class="checkout-step" data-step="3">
+          <button type="button" class="back-link" data-to-step="2">Back to Select your tags</button>
           <h2>3. Optional add-ons</h2>
 
           <div class="addons-grid">
             <!-- Finder Rewards -->
             <div class="addon-group">
-              <h3>Finder Reward Credits (worth £20 each)</h3>
+              <h3>Finder Reward Credits (worth £ 20 each)</h3>
               <div class="radio-stack">
                 <label class="radio-row">
                   <input type="radio" name="finderRewards" value="0" checked>
@@ -87,11 +90,11 @@
                 </label>
                 <label class="radio-row">
                   <input type="radio" name="finderRewards" value="1">
-                  <span>£20 Credit — £2.99</span>
+                  <span>£ 20 Credit — £ 2.99</span>
                 </label>
                 <label class="radio-row">
                   <input type="radio" name="finderRewards" value="2">
-                  <span>2 × £20 Credits — £3.99</span>
+                  <span>2 × £ 20 Credits — £ 3.99</span>
                 </label>
               </div>
             </div>
@@ -106,11 +109,11 @@
                 </label>
                 <label class="radio-row">
                   <input type="radio" name="returnCredits" value="1">
-                  <span>1 Return — £3.99</span>
+                  <span>1 Return — £ 3.99</span>
                 </label>
                 <label class="radio-row">
                   <input type="radio" name="returnCredits" value="3">
-                  <span>3 Returns — £6.99</span>
+                  <span>3 Returns — £ 6.99</span>
                 </label>
               </div>
             </div>
@@ -125,11 +128,11 @@
                 </label>
                 <label class="radio-row">
                   <input type="radio" name="extraContacts" value="1">
-                  <span>1 Additional — £0.99</span>
+                  <span>1 Additional — £ 0.99</span>
                 </label>
                 <label class="radio-row">
                   <input type="radio" name="extraContacts" value="2">
-                  <span>2 Additional — £1.99</span>
+                  <span>2 Additional — £ 1.99</span>
                 </label>
               </div>
             </div>
@@ -137,25 +140,27 @@
         </section>
 
         <section id="shipping-section" class="checkout-step" data-step="4">
+          <button type="button" class="back-link" data-to-step="3">Back to Optional add-ons</button>
           <h2>4. Shipping</h2>
-          <p class="section-subtext">Free shipping automatically applies on orders over £30</p>
+          <p class="section-subtext">Free shipping automatically applies on orders over £ 30</p>
           <div class="radio-stack">
             <label class="radio-row">
               <input type="radio" name="shippingMethod" value="standard" checked>
-              <span>Standard Delivery (Tracked 48) — £3.49</span>
+              <span>Standard Delivery (Tracked 48) — £ 3.49</span>
             </label>
             <label class="radio-row">
               <input type="radio" name="shippingMethod" value="express">
-              <span>Express Delivery (Tracked 24) — £4.99</span>
+              <span>Express Delivery (Tracked 24) — £ 4.99</span>
             </label>
             <label class="radio-row">
               <input type="radio" name="shippingMethod" value="economy">
-              <span>Economy Delivery (Untracked) — £2.49</span>
+              <span>Economy Delivery (Untracked) — £ 2.49</span>
             </label>
           </div>
         </section>
 
         <section id="payment-section" class="checkout-step" data-step="5">
+          <button type="button" class="back-link" data-to-step="4">Back to Shipping</button>
           <h2>5. Payment</h2>
           <div id="checkout-error"></div>
         </section>

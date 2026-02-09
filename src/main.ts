@@ -53,7 +53,7 @@ const checkoutError = document.getElementById('checkout-error')!;
 
 
 // Format currency
-const formatCurrency = (amount: number) => `£${amount.toFixed(2)}`;
+const formatCurrency = (amount: number) => `£ ${amount.toFixed(2)}`;
 
 const TAG_METADATA: Record<string, { size: string; material: string; howItWorks: string }> = {
   halo: {
@@ -260,7 +260,7 @@ function updateUI() {
   } else {
     // Reset helper text and radios if not eligible
     if (shippingHelperText) {
-      shippingHelperText.textContent = "Free shipping automatically applies on orders over £30";
+      shippingHelperText.textContent = "Free shipping automatically applies on orders over £ 30";
     }
     shippingRadios.forEach(radio => {
       (radio as HTMLInputElement).disabled = false;
@@ -284,18 +284,18 @@ function updateUI() {
   if (standardLabel) {
     const isStandardFree = (totalSelectedQuantity === 1 && currentStep >= 4);
     if (isStandardFree) {
-      standardLabel.textContent = "Free Standard Delivery (Tracked 48) — £0.00";
+      standardLabel.textContent = "Free Standard Delivery (Tracked 48) — £ 0.00";
     } else {
-      standardLabel.textContent = "Standard Delivery (Tracked 48) — £3.49";
+      standardLabel.textContent = "Standard Delivery (Tracked 48) — £ 3.49";
     }
   }
 
   const expressLabel = document.querySelector('input[value="express"] + span');
   if (expressLabel) {
     if (isEligibleForFreeExpress && currentStep >= 4) {
-      expressLabel.textContent = "Free Express Delivery (Tracked 24) — £0.00";
+      expressLabel.textContent = "Free Express Delivery (Tracked 24) — £ 0.00";
     } else {
-      expressLabel.textContent = "Express Delivery (Tracked 24) — £4.99";
+      expressLabel.textContent = "Express Delivery (Tracked 24) — £ 4.99";
     }
   }
 
@@ -304,7 +304,7 @@ function updateUI() {
   if (freeShippingProgress) {
     if (subTotal < 30.00) {
       const remaining = 30.00 - subTotal;
-      freeShippingProgress.textContent = `£${remaining.toFixed(2)} away from free shipping`;
+      freeShippingProgress.textContent = `£ ${remaining.toFixed(2)} away from free shipping`;
       freeShippingProgress.hidden = false;
     } else {
       freeShippingProgress.hidden = true;
@@ -640,6 +640,17 @@ initThemeSwitcher();
 function initializeSteps() {
   updateStepUI();
   updateCTA();
+
+  // Handle Back Navigation
+  document.querySelectorAll('.back-link').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const toStep = parseInt(btn.getAttribute('data-to-step') || '1', 10);
+      currentStep = toStep;
+      updateStepUI();
+      updateCTA();
+      updateUI(); // Ensure totals and labels are correct for the previous step
+    });
+  });
 
   // Allow clicking completed steps to edit
   document.querySelectorAll('.checkout-step').forEach(step => {
