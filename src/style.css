@@ -43,23 +43,48 @@ h1 {
 }
 
 /* Layout */
-.checkout-layout,
+/* Layout and Structural Separation */
 .checkout-page {
   display: flex;
   flex-direction: column;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px;
-  gap: 40px;
+  gap: 0;
+  padding: 0;
 }
 
 @media (min-width: 1024px) {
-  .checkout-layout {
+  .checkout-page {
     flex-direction: row;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: stretch;
+    min-height: 100vh;
+  }
+}
+
+.checkout-left {
+  flex: 1;
+  background-color: #FFFFFF;
+  padding: 24px;
+}
+
+@media (min-width: 1024px) {
+  .checkout-left {
+    padding: 64px 80px;
+  }
+}
+
+.checkout-right {
+  background-color: #FAFAFA;
+  padding: 24px;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .checkout-right {
+    width: 440px;
     padding: 64px 48px;
-    gap: 80px;
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+    /* Divider */
   }
 }
 
