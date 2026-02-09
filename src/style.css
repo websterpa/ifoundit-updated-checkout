@@ -31,15 +31,15 @@ body {
   line-height: 1.6;
   margin: 0;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 h1 {
   font-size: 28px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.25;
   color: var(--text-primary);
-  margin: 0 0 24px 0;
+  margin: 0 0 16px 0;
 }
 
 /* Layout */
@@ -112,10 +112,10 @@ h1 {
 .section-heading {
   font-size: 18px;
   font-weight: 500;
-  line-height: 1.4;
+  line-height: 1.35;
   color: var(--text-primary);
   margin: 0;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   letter-spacing: 0;
 }
 
@@ -199,7 +199,7 @@ input[type="radio"] {
 }
 
 .radio-title {
-  font-size: 1rem;
+  font-size: 15px;
   font-weight: 500;
   color: var(--text-primary);
   display: block;
@@ -207,21 +207,20 @@ input[type="radio"] {
 
 .radio-card:has(input:checked) .radio-title {
   color: var(--primary-color);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 
 .radio-desc {
-  font-size: 0.85rem;
+  font-size: 14px;
   color: var(--text-tertiary);
   display: block;
   margin-top: 2px;
   opacity: 0.7;
-  /* User requested 0.7 opacity on descriptive text */
 }
 
 .radio-price {
-  font-size: 0.95rem;
+  font-size: 14px;
   font-weight: 400;
   color: var(--text-secondary);
   white-space: nowrap;
@@ -328,14 +327,14 @@ input[type="radio"] {
 }
 
 .disclosure-panel h4 {
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   margin: 0 0 8px 0;
   color: #111827;
 }
 
 .disclosure-panel p {
-  font-size: 0.75rem;
+  font-size: 12px;
   line-height: 1.4;
   color: #4B5563;
   margin: 0 0 8px 0;
@@ -356,8 +355,9 @@ input[type="radio"] {
 }
 
 .tag-info h3 {
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
   margin: 0 0 6px;
   color: var(--text-primary);
 }
@@ -368,7 +368,7 @@ input[type="radio"] {
 
 
 .tag-info p {
-  font-size: 0.85rem;
+  font-size: 14px;
   color: var(--text-secondary);
   margin: 0 0 20px;
   line-height: 1.4;
@@ -386,7 +386,7 @@ input[type="radio"] {
 .tag-unit-price {
   font-weight: 500;
   color: var(--text-primary);
-  font-size: 0.9rem;
+  font-size: 14px;
 }
 
 .qty-selector {
@@ -408,7 +408,7 @@ input[type="radio"] {
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
-  font-size: 1rem;
+  font-size: 15px;
   margin: 0;
   padding: 0;
   transition: opacity 0.15s ease;
@@ -432,11 +432,12 @@ input[type="radio"] {
 }
 
 .addon-group h3 {
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
   text-transform: none;
   color: var(--text-primary);
-  margin: 0 0 16px;
+  margin: 0 0 6px;
 }
 
 .radio-stack {
@@ -466,7 +467,7 @@ input[type="radio"] {
 }
 
 .radio-row span {
-  font-size: 0.95rem;
+  font-size: 15px;
   color: var(--text-primary);
   font-weight: 400;
 }
@@ -474,7 +475,7 @@ input[type="radio"] {
 .radio-row .price {
   color: var(--text-secondary);
   font-weight: 400;
-  font-size: 0.9rem;
+  font-size: 14px;
 }
 
 /* Check Circle */
@@ -525,21 +526,21 @@ input[type="radio"] {
 .summary-section-label {
   margin-top: 24px;
   margin-bottom: 12px;
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-size: 13px;
+  text-transform: none;
+  letter-spacing: 0;
   color: var(--text-tertiary);
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .summary-item,
 .summary-row {
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
+  font-size: 14px;
   color: var(--text-secondary);
   font-weight: 400;
-  opacity: 0.8;
+  opacity: 0.7;
   /* De-emphasise rows */
 }
 
@@ -552,18 +553,14 @@ input[type="radio"] {
   display: flex;
   justify-content: space-between;
   margin-top: 32px;
-  /* Increased separation */
   padding-top: 20px;
-  border-top: 2px solid var(--border-color);
-  /* Stronger separator */
-  font-size: 1.25rem;
-  /* Larger total */
-  font-weight: 800;
-  /* Bolder total */
+  border-top: 1px solid var(--border-color);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.35;
   color: var(--text-primary);
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   opacity: 1;
-  /* Anchor visibility */
 }
 
 .summary-total span:last-child {
@@ -585,8 +582,8 @@ input[type="radio"] {
   border: none;
   border-radius: 8px;
   /* Slightly tighter radius for button */
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: 500;
+  font-size: 15px;
   cursor: pointer;
   margin-top: 24px;
   display: flex;
@@ -611,7 +608,7 @@ input[type="radio"] {
 }
 
 .secure-badge {
-  font-size: 0.75rem;
+  font-size: 12px;
   display: flex;
   align-items: center;
   gap: 6px;
@@ -662,7 +659,7 @@ input[type="radio"] {
 /* Utilities */
 .checkout-error {
   color: #DC2626;
-  font-size: 0.875rem;
+  font-size: 14px;
   margin-top: 12px;
   text-align: center;
   background: #FEF2F2;
@@ -683,7 +680,7 @@ input[type="radio"] {
   gap: 8px;
   margin-top: 20px;
   color: var(--text-tertiary);
-  font-size: 0.75rem;
+  font-size: 12px;
   opacity: 0.8;
 }
 
@@ -702,7 +699,7 @@ input[type="radio"] {
   display: flex;
   justify-content: center;
   gap: 12px;
-  font-size: 0.75rem;
+  font-size: 12px;
   color: var(--text-tertiary);
   margin-top: 32px;
 }
@@ -714,11 +711,11 @@ input[type="radio"] {
 
 /* Order Summary Hierarchy & Labels */
 .summary-section-label {
-  font-weight: 600;
-  opacity: 0.8;
+  font-weight: 500;
+  opacity: 0.7;
   margin-top: 20px;
   margin-bottom: 8px;
-  font-size: 0.95rem;
+  font-size: 14px;
   color: var(--text-primary);
 }
 
@@ -733,7 +730,7 @@ input[type="radio"] {
 }
 
 #summary-base-plan-cost {
-  font-size: 0.9rem;
+  font-size: 14px;
   color: var(--text-secondary);
   margin-bottom: 8px;
 }
@@ -742,7 +739,7 @@ input[type="radio"] {
 
 #summary-tags-subtotal,
 #summary-addons-cost {
-  font-size: 0.85rem;
+  font-size: 14px;
   color: var(--text-tertiary);
   margin-top: 8px;
   padding-top: 8px;
@@ -750,7 +747,7 @@ input[type="radio"] {
 }
 
 #free-shipping-progress {
-  font-size: 0.8rem;
+  font-size: 13px;
   color: var(--text-secondary);
   opacity: 0.7;
   margin-top: 8px;
@@ -764,9 +761,9 @@ input[type="radio"] {
 }
 
 #summary-total {
-  font-weight: 600;
+  font-weight: 500;
   /* Primary total limit */
-  font-size: 1.125rem;
+  font-size: 18px;
   /* 18px */
   margin-top: 24px;
   padding-top: 16px;
@@ -782,7 +779,7 @@ input[type="radio"] {
 
 #sticky-total::before {
   content: "Total due:";
-  font-size: 0.9rem;
+  font-size: 14px;
   font-weight: 500;
   color: var(--text-secondary);
   text-transform: none;
@@ -798,8 +795,8 @@ input[type="radio"] {
   /* Medium/Standard radius */
   padding: 0 24px;
   /* Horizontal padding, height handles vertical */
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   cursor: pointer;
   height: 48px;
   /* Standard touch target/form height */
