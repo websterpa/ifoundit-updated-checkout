@@ -319,6 +319,16 @@ function updateUI() {
     finalTotal = 3.99;
   }
 
+  // --- Smart Navigation Labeling (Step-Aware) ---
+  const step4BackBtn = document.querySelector('section[data-step="4"] .back-link');
+  if (step4BackBtn) {
+    if (state.tagCapacity === 1) {
+      step4BackBtn.textContent = "Back to How many things do I want to protect?";
+    } else {
+      step4BackBtn.textContent = "Back to Optional add-ons";
+    }
+  }
+
   // Update counters
   currentSelectionCounter.textContent = totalSelectedQuantity.toString();
   maxCapacityCounter.textContent = state.tagCapacity.toString();
@@ -644,7 +654,14 @@ function initializeSteps() {
   // Handle Back Navigation
   document.querySelectorAll('.back-link').forEach(btn => {
     btn.addEventListener('click', () => {
-      const toStep = parseInt(btn.getAttribute('data-to-step') || '1', 10);
+      let toStep = parseInt(btn.getAttribute('data-to-step') || '1', 10);
+
+      // Literal Navigation Rule (Prompt 4356): 
+      // Skip Add-Ons (Step 3) and Tag Selection (Step 2) when moving back from Shipping if 1-tag only.
+      if (currentStep === 4 && state.tagCapacity === 1) {
+        toStep = 1;
+      }
+
       currentStep = toStep;
       updateStepUI();
       updateCTA();
@@ -655,12 +672,13 @@ function initializeSteps() {
   // Allow clicking completed steps to edit
   document.querySelectorAll('.checkout-step').forEach(step => {
     step.addEventListener('click', () => {
-      const stepNum = parseInt(step.getAttribute('data-step') || '0', 10);
+      let stepNum = parseInt(step.getAttribute('data-step') || '0', 10);
       if (stepNum < currentStep) {
-        // User wants to edit a previous step
-        // We could reset currentStep to this step, OR just expand it.
-        // For linear flow, usually we unwind to that step or just allow jumping back.
-        // Let's set currentStep to the clicked step for simplicity/safety.
+        // Handle skipped steps in 1-tag scenario
+        if (state.tagCapacity === 1 && (stepNum === 2 || stepNum === 3)) {
+          stepNum = 1;
+        }
+
         currentStep = stepNum;
         updateStepUI();
         updateCTA();
