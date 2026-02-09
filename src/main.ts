@@ -689,6 +689,7 @@ function initializeSteps() {
 function updateStepUI() {
   const steps = document.querySelectorAll('.checkout-step');
   const checkoutPage = document.querySelector('.checkout-page');
+  const stepIndicator = document.getElementById('order-step-indicator');
 
   steps.forEach(step => {
     const stepNum = parseInt(step.getAttribute('data-step') || '0', 10);
@@ -713,6 +714,11 @@ function updateStepUI() {
     } else {
       checkoutPage.classList.remove('payment-step-active');
     }
+  }
+
+  // Update step indicator text
+  if (stepIndicator) {
+    stepIndicator.textContent = `Order setup · Step ${currentStep} / ${TOTAL_STEPS}`;
   }
 }
 
