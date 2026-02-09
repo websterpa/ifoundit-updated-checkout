@@ -914,3 +914,12 @@ input[type="radio"] {
   margin-top: 8px;
   margin-bottom: 0;
 }
+
+/* Step Indicator */
+.checkout-step-indicator {
+  font-size: 0.8rem;
+  color: var(--text-tertiary);
+  font-weight: 400;
+  margin-bottom: 24px;
+  pointer-events: none;
+}
