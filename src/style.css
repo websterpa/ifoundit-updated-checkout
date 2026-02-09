@@ -27,15 +27,15 @@ body {
 }
 
 /* Layout */
-.checkout-layout {
+/* Layout */
+.checkout-layout,
+.checkout-page {
   display: flex;
   flex-direction: column;
-  max-width: 1080px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 24px;
-  /* Tighter top/bottom padding */
+  padding: 24px;
   gap: 40px;
-  /* Reduced gap between columns */
 }
 
 @media (min-width: 1024px) {
@@ -43,8 +43,8 @@ body {
     flex-direction: row;
     align-items: flex-start;
     justify-content: center;
-    gap: 64px;
-    /* Tighter layout */
+    padding: 64px 48px;
+    gap: 80px;
   }
 }
 
@@ -52,10 +52,17 @@ body {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  /* Consistent vertical rhythm */
+  gap: 40px;
+  /* Mobile vertical rhythm */
   width: 100%;
-  max-width: 640px;
+  max-width: 760px;
+}
+
+@media (min-width: 1024px) {
+  .checkout-main {
+    gap: 64px;
+    /* Desktop vertical rhythm */
+  }
 }
 
 .checkout-sidebar {
@@ -64,30 +71,38 @@ body {
   margin-top: 0;
 }
 
+
+
 /* Sections - Containment */
 .checkout-section {
   background: var(--surface-color);
   padding: 24px;
-  /* Consistent internal padding */
   border-radius: var(--radius);
   border: none;
   display: flex;
   flex-direction: column;
   gap: 24px;
   /* Internal spacing */
-  /* No Shadow on sections to keep it flat on the page */
+}
+
+@media (min-width: 1024px) {
+  .checkout-section {
+    padding: 32px;
+  }
 }
 
 /* Headings */
 .checkout-section h2,
 .section-heading {
   font-size: 1.25rem;
-  /* Slightly smaller, more refined */
-  font-weight: 600;
-  /* Increased weight for hierarchy */
+  font-weight: 500;
+  /* Reduced from 600 */
   color: var(--text-primary);
   margin: 0;
-  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  /* Slightly tighter */
+  letter-spacing: 0;
+  /* Remove negative tracking */
 }
 
 /* Welcome Section - Exception: No Background */
@@ -95,7 +110,6 @@ body {
   background: transparent;
   padding: 0;
   margin-bottom: 8px;
-  /* Tighter to first section */
   gap: 8px;
 }
 
@@ -112,10 +126,13 @@ body {
 
 .section-subtext {
   color: var(--text-secondary);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  /* Smaller than header */
   margin: 0;
   max-width: 500px;
   line-height: 1.4;
+  opacity: 0.7;
+  /* De-emphasis */
 }
 
 /* Capacity Cards */
@@ -179,12 +196,14 @@ input[type="radio"] {
   font-weight: 600;
 }
 
+
 .radio-desc {
   font-size: 0.85rem;
   color: var(--text-tertiary);
-  /* Reduced contrast for noise */
   display: block;
   margin-top: 2px;
+  opacity: 0.7;
+  /* User requested 0.7 opacity on descriptive text */
 }
 
 .radio-price {
@@ -247,12 +266,14 @@ input[type="radio"] {
   color: var(--primary-color);
 }
 
+
 .tag-info p {
   font-size: 0.85rem;
   color: var(--text-secondary);
   margin: 0 0 20px;
   line-height: 1.4;
-  opacity: 0.8;
+  opacity: 0.7;
+  /* User requested 0.7 opacity on descriptive text */
 }
 
 .tag-price-row {
@@ -385,10 +406,12 @@ input[type="radio"] {
   border-radius: var(--radius);
   background: #FFFFFF;
   box-shadow: var(--card-shadow-soft);
-  /* The ONLY shadow allowed */
   display: flex;
   flex-direction: column;
   gap: 24px;
+  align-self: flex-start;
+  /* Visually anchor to top */
+  margin-top: 0;
 }
 
 .summary-list {
@@ -405,6 +428,14 @@ input[type="radio"] {
   font-size: 0.9rem;
   color: var(--text-secondary);
   font-weight: 400;
+  opacity: 0.9;
+  /* Slight de-emphasis */
+}
+
+.summary-item .price,
+.summary-row .price {
+  font-feature-settings: "tnum";
+  /* Tabular figures for alignment */
 }
 
 .summary-total {
@@ -413,10 +444,10 @@ input[type="radio"] {
   margin-top: 16px;
   padding-top: 24px;
   border-top: 1px solid #F3F4F6;
-  /* Extremely subtle divider inside summary */
   font-size: 1.125rem;
   font-weight: 600;
   color: var(--text-primary);
+  letter-spacing: -0.01em;
 }
 
 .summary-total span:last-child {
@@ -447,11 +478,14 @@ input[type="radio"] {
   opacity: 0.9;
 }
 
+
 .primary-cta:disabled {
   background: #F3F4F6;
   color: #D1D5DB;
   cursor: not-allowed;
   box-shadow: none;
+  opacity: 0.5;
+  /* Muted per request */
 }
 
 .secure-badge {
