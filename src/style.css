@@ -902,9 +902,15 @@ input[type="radio"] {
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
+#payment-section h2 {
+  font-weight: 500;
+}
+
 #payment-section .section-subtext {
   max-width: 520px;
   color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.5;
+  margin-top: 8px;
+  margin-bottom: 0;
 }
