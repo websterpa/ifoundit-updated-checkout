@@ -897,3 +897,18 @@ input[type="radio"] {
 .checkout-step.step-completed::after {
   content: none;
 }
+
+/* Payment Section Handoff Styling */
+#payment-section {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  margin-top: 48px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+#payment-section .section-subtext {
+  max-width: 520px;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
