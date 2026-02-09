@@ -88,6 +88,7 @@ function renderTagTypes() {
     return `
       <div class="tag-card ${isAtCapacity ? 'at-capacity' : ''} ${qty > 0 ? 'has-qty' : ''}" data-id="${tag.id}">
         <div class="tag-info">
+          <img src="/assets/tag-${tag.id}.png" alt="${tag.name} Tag" class="tag-image">
           <h3>${tag.name}</h3>
           <p>${tag.descriptor}</p>
         </div>

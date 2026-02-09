@@ -245,6 +245,14 @@ input[type="radio"] {
   /* Reserve space */
 }
 
+/* Product Image */
+.tag-card img {
+  width: 72px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 12px;
+}
+
 .tag-card:hover {
   background: rgba(0, 0, 0, 0.01);
 }
