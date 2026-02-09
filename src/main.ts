@@ -225,7 +225,7 @@ function updateUI() {
   // Calculate Base Totals
   const { basePlanCost, rawTagsCost, tagItems, boltOnItems, addOnsCost, total: subTotal, totalSelectedQuantity } = calculateTotal(state);
 
-  // --- Shipping Logic (Local Override) ---
+  // --- Shipping Logic (Literal Execution) ---
   const shippingRates = {
     standard: 3.49,
     express: 4.99,
@@ -233,22 +233,27 @@ function updateUI() {
   };
   let shippingCost = shippingRates[((state as any).shippingMethod || 'standard') as keyof typeof shippingRates];
 
-  // Free Shipping Rule: If order total > £30, Standard is Free
-  // We use subTotal (tags + addons + plans) for this threshold? Usually yes.
-  // "If order total exceeds £30" - implied subtotal before shipping.
-  if (subTotal > 30.00) {
-    if ((state as any).shippingMethod === 'standard') {
-      shippingCost = 0.00;
-    }
-    // Update label to show free
-    const standardLabel = document.querySelector('input[value="standard"] + span');
-    if (standardLabel) standardLabel.textContent = "Free Standard Delivery (Tracked 48) — £0.00";
-  } else {
-    const standardLabel = document.querySelector('input[value="standard"] + span');
-    if (standardLabel) standardLabel.textContent = "Standard Delivery (Tracked 48) — £3.49";
+  // Rule 5: shipping costs only added after Shipping section reached (Step 4)
+  if (currentStep < 4) {
+    shippingCost = 0;
   }
 
-  // Free Shipping Progress Message (Prompt 3509)
+  // Free Shipping Rule: If order total > £30, Standard is Free
+  if (subTotal > 30.00 && (state as any).shippingMethod === 'standard' && currentStep >= 4) {
+    shippingCost = 0.00;
+  }
+
+  // Update Standard delivery labels
+  const standardLabel = document.querySelector('input[value="standard"] + span');
+  if (standardLabel) {
+    if (subTotal > 30.00 && currentStep >= 4) {
+      standardLabel.textContent = "Free Standard Delivery (Tracked 48) — £0.00";
+    } else {
+      standardLabel.textContent = "Standard Delivery (Tracked 48) — £3.49";
+    }
+  }
+
+  // Free Shipping Progress Message
   const freeShippingProgress = document.getElementById('free-shipping-progress');
   if (freeShippingProgress) {
     if (subTotal < 30.00) {
@@ -260,7 +265,13 @@ function updateUI() {
     }
   }
 
-  const finalTotal = subTotal + shippingCost;
+  let finalTotal = subTotal + shippingCost;
+
+  // Rule 4: If exactly 1 tag selected, total is strictly 3.99
+  if (totalSelectedQuantity === 1) {
+    finalTotal = 3.99;
+    shippingCost = 0;
+  }
 
   // Update counters
   currentSelectionCounter.textContent = totalSelectedQuantity.toString();
@@ -646,14 +657,13 @@ function updateCTA() {
   // Step 4 -> "Continue to Payment"
   // Step 5 -> "Complete Order & Pay"
 
-  let nextText = "Continue";
-  if (currentStep === 1) nextText = "Continue to Select Your Tags";
-  if (currentStep === 2) nextText = "Continue to Add-ons";
-  if (currentStep === 3) nextText = "Continue to Shipping";
-  if (currentStep === 4) nextText = "Continue to Payment";
-  if (currentStep === 5) nextText = "Complete Order & Pay";
+  const { totalSelectedQuantity } = calculateTotal(state);
 
-  ctaButton.textContent = nextText;
+  if (totalSelectedQuantity === 1) {
+    ctaButton.textContent = "Go To Shipping Options";
+  } else if (totalSelectedQuantity > 1) {
+    ctaButton.textContent = "Select Your Tag Types & Quantity";
+  }
 }
 
 // Intercept CTA Click
