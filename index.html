@@ -49,6 +49,34 @@
                 transform: translateX(-40px);
             }
         }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                min-height: auto !important;
+                padding-top: 40px;
+                padding-bottom: 40px;
+            }
+
+            .hero-wrapper {
+                display: flex !important;
+                flex-direction: column !important;
+                text-align: left !important;
+                height: auto !important;
+            }
+
+            .hero-image {
+                max-width: 90% !important;
+                margin: 40px auto 0 auto !important;
+                display: block !important;
+                filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15)) !important;
+                transform: none !important;
+                position: static !important;
+            }
+
+            .mobile-hide {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -75,9 +103,10 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative overflow-hidden pt-16 md:pt-20 flex items-center hero-min-height"
+    <section class="relative overflow-hidden pt-16 md:pt-20 flex items-center hero-min-height hero-section"
         style="background: linear-gradient(to bottom, #ffffff 0%, #f3f4f6 100%);">
-        <div class="max-w-7xl mx-auto lg:h-[800px] grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6 hero-grid">
+        <div
+            class="max-w-7xl mx-auto lg:h-[800px] grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6 hero-grid hero-wrapper">
             <div class="space-y-8 py-24 md:py-32 relative z-10">
                 <h1 class="tracking-tight"
                     style="font-size: clamp(36px, 5vw, 56px); line-height: 1.1; color: #111111; font-weight: 600;">
@@ -113,13 +142,13 @@
             <div class="relative h-full flex items-center justify-center md:justify-end py-12 md:py-0">
                 <!-- Subtle Grounding Shadow -->
                 <div
-                    class="absolute bottom-[10%] right-[10%] w-[60%] h-[40px] bg-black/15 rounded-full blur-3xl pointer-events-none">
+                    class="absolute bottom-[10%] right-[10%] w-[60%] h-[40px] bg-black/15 rounded-full blur-3xl pointer-events-none mobile-hide">
                 </div>
 
                 <div class="relative md:right-0 right-0 product-shift">
                     <img src="/images/hero-image.png?v=2" alt="iFoundIt NFC tags attached to everyday items"
                         style="max-width: 920px; width: 100%; height: auto; transform: translateY(10px); filter: drop-shadow(0px 40px 60px rgba(0,0,0,0.15));"
-                        class="transition-transform duration-700 ease-out hover:scale-[1.02]" />
+                        class="transition-transform duration-700 ease-out hover:scale-[1.02] hero-image" />
                 </div>
             </div>
         </div>
