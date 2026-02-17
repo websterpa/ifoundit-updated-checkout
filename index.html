@@ -29,78 +29,6 @@
         .selection-blue::selection {
             background-color: #dbeafe;
         }
-
-        .hero-min-height {
-            min-height: 88vh;
-        }
-
-        @media (min-width: 768px) {
-            .hero-min-height {
-                min-height: 78vh;
-            }
-
-            .hero-wrapper {
-                display: grid !important;
-                grid-template-columns: 1fr 1fr;
-                align-items: center;
-                position: relative;
-                padding-right: 6vw;
-            }
-
-            .hero-text-column {
-                max-width: 520px;
-                position: relative;
-                z-index: 2;
-            }
-
-            .hero-image {
-                position: absolute;
-                right: -4vw;
-                bottom: 0;
-                width: clamp(680px, 55vw, 1100px);
-                max-width: none;
-                z-index: 1;
-            }
-
-            .hero-image-container {
-                display: contents;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .hero-image {
-                transform: translateX(-40px) translateY(10px) !important;
-                filter: drop-shadow(0 40px 60px rgba(0, 0, 0, 0.18)) !important;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-section {
-                min-height: auto !important;
-                padding-top: 40px;
-                padding-bottom: 40px;
-            }
-
-            .hero-wrapper {
-                display: flex !important;
-                flex-direction: column !important;
-                text-align: left !important;
-                height: auto !important;
-            }
-
-            .hero-image {
-                max-width: 90% !important;
-                margin: 40px auto 0 auto !important;
-                display: block !important;
-                filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15)) !important;
-                transform: none !important;
-                position: static !important;
-            }
-
-            .mobile-hide {
-                display: none !important;
-            }
-        }
     </style>
 </head>
 
@@ -123,52 +51,51 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative overflow-hidden pt-16 md:pt-20 flex items-center hero-min-height hero-section"
-        style="background: linear-gradient(to bottom, #ffffff 0%, #f3f4f6 100%);">
-        <div class="max-w-7xl mx-auto lg:h-[800px] relative px-6 hero-wrapper">
-            <div class="space-y-8 py-24 md:py-32 hero-text-column">
-                <h1 class="tracking-tight"
-                    style="font-size: clamp(36px, 5vw, 56px); line-height: 1.1; color: #111111; font-weight: 600;">
-                    Lose it once.<br />Regret it forever.
-                </h1>
-                <p class="text-lg text-neutral-600 leading-relaxed" style="max-width: 460px;">
-                    Make what matters returnable.<br />No app. No battery. No tracking.
-                </p>
-                <p style="margin-top:12px; font-size:18px; font-weight:500; color:#111;">
-                    From £3.99 per tag.
-                </p>
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center justify-between min-h-[85vh]">
 
-                <div class="flex flex-wrap gap-4 items-center">
-                    <a href="/checkout.html">
-                        <button
-                            class="bg-black text-white rounded-full px-8 py-4 hover:bg-neutral-800 font-semibold transition-all"
-                            style="box-shadow: 0px 10px 25px rgba(0,0,0,0.15);">
+                <!-- TEXT COLUMN -->
+                <div class="max-w-xl py-20 lg:py-0">
+                    <h1 class="text-[40px] lg:text-[56px] font-bold leading-[1.05] tracking-tight text-gray-900">
+                        Lose it once.<br />
+                        Regret it forever.
+                    </h1>
+
+                    <p class="mt-6 text-lg text-gray-600">
+                        Make what matters returnable.<br />
+                        No app. No battery. No tracking.
+                    </p>
+
+                    <p class="mt-4 font-semibold text-gray-900">
+                        From £3.99 per tag.
+                    </p>
+
+                    <div class="mt-8 flex flex-col sm:flex-row sm:items-center gap-4">
+                        <a href="/checkout.html"
+                            class="inline-flex items-center justify-center rounded-full bg-black px-8 py-4 text-white text-sm font-medium shadow-lg hover:opacity-90 transition">
                             Protect my items
-                        </button>
-                    </a>
-                    <p style="margin-top:12px; font-size:14px; color:#6b7280;">
+                        </a>
+
+                        <a href="/how-it-works.html"
+                            class="inline-flex items-center justify-center rounded-full border border-gray-300 px-8 py-4 text-sm font-medium text-gray-800 hover:bg-gray-100 transition">
+                            See how it works
+                        </a>
+                    </div>
+
+                    <p class="mt-6 text-sm text-gray-500">
                         No app required. No battery. No tracking. Subscription included. One simple tag.
                     </p>
-                    <a href="#">
-                        <button
-                            class="border border-neutral-300 text-slate-900 rounded-full px-7 py-3 hover:bg-neutral-100 font-medium transition-all">
-                            See how it works
-                        </button>
-                    </a>
                 </div>
-            </div>
 
-            <div class="hero-image-container">
-                <!-- Subtle Grounding Shadow -->
+                <!-- IMAGE COLUMN -->
                 <div
-                    class="absolute bottom-[10%] right-[10%] w-[60%] h-[40px] bg-black/15 rounded-full blur-3xl pointer-events-none mobile-hide">
+                    class="relative lg:-mr-12 xl:-mr-24 flex justify-center lg:justify-end w-full lg:w-auto pb-12 lg:pb-0">
+                    <img src="/images/hero-image.png?v=2" alt="iFoundit NFC tags on luggage and everyday items"
+                        class="w-[92%] max-w-[500px] lg:max-w-none lg:w-[780px] object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.18)]" />
                 </div>
 
-                <div class="relative md:right-0 right-0">
-                    <img src="/images/hero-image.png?v=2" alt="iFoundIt NFC tags attached to everyday items"
-                        style="width: 100%; height: auto;"
-                        class="transition-transform duration-700 ease-out hover:scale-[1.02] hero-image" />
-                </div>
             </div>
         </div>
     </section>
