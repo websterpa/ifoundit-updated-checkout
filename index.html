@@ -38,6 +38,16 @@
             .hero-min-height {
                 min-height: 78vh;
             }
+
+            .hero-grid {
+                gap: 40px !important;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .product-shift {
+                transform: translateX(-40px);
+            }
         }
     </style>
 </head>
@@ -67,11 +77,11 @@
     <!-- Hero Section -->
     <section class="relative overflow-hidden pt-16 md:pt-20 flex items-center hero-min-height"
         style="background: linear-gradient(to bottom, #ffffff 0%, #f3f4f6 100%);">
-        <div class="max-w-7xl mx-auto lg:h-[800px] grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6">
+        <div class="max-w-7xl mx-auto lg:h-[800px] grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6 hero-grid">
             <div class="space-y-8 py-24 md:py-32 relative z-10">
                 <h1 class="tracking-tight"
                     style="font-size: clamp(36px, 5vw, 56px); line-height: 1.1; color: #111111; font-weight: 600;">
-                    Lose it once.<br /><span style="font-weight: 800;">Regret it.</span>
+                    Lose it once.<br />Regret it forever.
                 </h1>
                 <p class="text-lg text-neutral-600 leading-relaxed" style="max-width: 460px;">
                     Make what matters returnable.<br />No app. No battery. No tracking.
@@ -106,10 +116,10 @@
                     class="absolute bottom-[10%] right-[10%] w-[60%] h-[40px] bg-black/15 rounded-full blur-3xl pointer-events-none">
                 </div>
 
-                <div class="relative md:right-[-40px] right-0">
+                <div class="relative md:right-0 right-0 product-shift">
                     <img src="/images/hero-image.png?v=2" alt="iFoundIt NFC tags attached to everyday items"
-                        style="max-width: 720px; width: 100%; height: auto; transform: translateY(10px); filter: drop-shadow(0px 40px 60px rgba(0,0,0,0.15));"
-                        class="lg:max-w-[820px] transition-transform duration-700 ease-out hover:scale-[1.02]" />
+                        style="max-width: 920px; width: 100%; height: auto; transform: translateY(10px); filter: drop-shadow(0px 40px 60px rgba(0,0,0,0.15));"
+                        class="transition-transform duration-700 ease-out hover:scale-[1.02]" />
                 </div>
             </div>
         </div>
