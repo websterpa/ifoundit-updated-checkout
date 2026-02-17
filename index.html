@@ -1,180 +1,206 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>iFoundIt Shop - Get Protected</title>
-    <meta name="description" content="Secure your valuables with iFoundIt tags.">
-    <!-- Fonts -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFoundit - Don't lose what matters</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --bg-dark: #0B162C;
-            --primary: #3DB7E4;
-            --cta-blue: #5EC6F2;
-            --cta-hover: #4FB3DE;
-            --text-main: #FFFFFF;
-            --text-body: #C7D2E0;
-            --font-heading: 'Outfit', sans-serif;
-            --font-body: 'Inter', sans-serif;
-            --glass-surface: rgba(30, 58, 95, 0.6);
-            --glass-border: rgba(61, 183, 228, 0.2);
-        }
-
-        body {
-            font-family: var(--font-body);
-            background: var(--bg-dark);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            align-items: center;
-            justify-content: center;
-            background-image: radial-gradient(circle at 50% 0%, #1E3A5F 0%, #0B162C 70%);
-        }
-
-        .container {
-            text-align: center;
-            padding: 2rem;
-            max-width: 600px;
-            animation: fadeIn 0.8s ease-out;
-        }
-
-        h1 {
-            font-family: var(--font-heading);
-            margin-bottom: 1rem;
-            color: var(--text-main);
-            font-size: 3rem;
-            font-weight: 700;
-            line-height: 1.1;
-        }
-
-        p {
-            font-size: 1.25rem;
-            color: var(--text-body);
-            margin-bottom: 2.5rem;
-            line-height: 1.5;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--cta-blue);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            font-family: var(--font-heading);
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 12px rgba(61, 183, 228, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .cta-button:hover {
-            background: var(--cta-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(61, 183, 228, 0.4);
-        }
-
-        ul {
-            text-align: left;
-            display: inline-block;
-            margin-bottom: 3rem;
-            padding: 20px;
-            background: var(--glass-surface);
-            border-radius: 16px;
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            list-style: none;
-        }
-
-        li {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            color: var(--text-main);
-            font-size: 1rem;
-        }
-
-        li:last-child {
-            margin-bottom: 0;
-        }
-
-        .check-icon {
-            color: var(--primary);
-            margin-right: 12px;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .trust-text {
-            color: var(--text-body);
-            font-size: 0.9rem;
-            opacity: 0.7;
-            margin-top: 1rem;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, .font-display { font-family: 'Outfit', sans-serif; }
+        .selection-blue::selection { background-color: #dbeafe; }
     </style>
 </head>
+<body class="bg-white text-slate-800 selection-blue">
 
-<body class="theme-base">
-    <div
-        style="background-color: var(--primary); color: white; padding: 12px; font-weight: bold; text-align: center; width: 100%; position: absolute; top: 0; left: 0; z-index: 9999;">
-        DEPLOY CHECK — REMOVE AFTER CONFIRMATION
-    </div>
-    <div class="container">
-        <img src="/logo_circle.png" alt="iFoundIt Logo" width="80" style="margin-bottom: 2rem;">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2 group cursor-pointer">
+                <div class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
+                    i
+                </div>
+                <span class="font-bold text-xl text-slate-800 tracking-tight">iFoundit</span>
+            </div>
 
-        <h1>Don't lose what matters.</h1>
-        <p>The simplest way to ensure your lost items always find their way home.</p>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="/" class="text-slate-900">Home</a>
+                <a href="#" class="hover:text-slate-900 transition-colors">Tags</a>
+                <a href="#" class="hover:text-slate-900 transition-colors">How it works</a>
+                <a href="#" class="hover:text-slate-900 transition-colors">Why iFoundit?</a>
+            </nav>
 
-        <ul>
-            <li>
-                <span class="check-icon">&#10003;</span>
-                Finders contact you instantly
-            </li>
-            <li>
-                <span class="check-icon">&#10003;</span>
-                No batteries or apps required
-            </li>
-            <li>
-                <span class="check-icon">&#10003;</span>
-                Works everywhere, for everyone
-            </li>
-        </ul>
-
-        <div
-            style="margin-bottom: 1.5rem; display: inline-flex; flex-direction: column; align-items: center; border: 1px solid var(--glass-border); padding: 24px; border-radius: 16px; background: var(--glass-surface);">
-            <a href="/checkout.html" class="cta-button">Start safeguarding your items</a>
-            <div style="margin-top: 12px; font-size: 0.95rem; color: var(--text-body); font-weight: 500;">Select your
-                tags and
-                bolt-ons</div>
+            <a href="/checkout.html" class="text-sm font-semibold text-slate-900 hover:text-blue-600 transition-colors">
+                Buy Now
+            </a>
         </div>
+    </header>
 
-        <div class="trust-text">
-            Simple, secure, and private.
+    <!-- Hero Section -->
+    <section class="relative bg-white overflow-hidden pt-16 md:pt-20">
+        <div class="max-w-7xl mx-auto lg:h-[800px] grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6">
+            <div class="space-y-8 py-24 md:py-32 relative z-10">
+                <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 leading-[1.1]">
+                    Lose it once.<br />Regret it forever.
+                </h1>
+                <p class="text-lg text-neutral-600 max-w-md leading-relaxed">
+                    Make your valuables returnable. No battery. No tracking. No app required.
+                </p>
+
+                <div class="flex flex-wrap gap-4 items-center">
+                    <a href="/checkout.html">
+                        <button class="bg-black text-white rounded-full px-7 py-3 hover:bg-neutral-800 font-medium transition-all">
+                            Protect my items
+                        </button>
+                    </a>
+                    <a href="#">
+                        <button class="border border-neutral-300 text-slate-900 rounded-full px-7 py-3 hover:bg-neutral-100 font-medium transition-all">
+                            See how it works
+                        </button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative h-full flex items-center justify-center md:justify-end py-12 md:py-0">
+                <!-- Subtle Grounding Shadow -->
+                <div class="absolute bottom-[10%] right-[10%] w-[60%] h-[40px] bg-black/15 rounded-full blur-3xl pointer-events-none"></div>
+
+                <img
+                    src="/images/Hero_Image-removebg-preview.png?v=2"
+                    alt="iFoundIt NFC tags attached to everyday items"
+                    class="relative w-[135%] md:w-[150%] md:-mr-10 max-w-none object-contain transition-transform duration-700 ease-out hover:scale-[1.02]"
+                />
+            </div>
         </div>
+    </section>
+
+    <!-- Emotional Reinforcement -->
+    <section class="bg-white py-16">
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <p class="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight">
+                Most lost items are never returned.
+            </p>
+            <p class="mt-4 text-slate-600 text-base">
+                Once it’s gone, it’s usually gone for good.
+            </p>
+        </div>
+    </section>
+
+    <!-- Shop by item grid -->
+    <section class="relative py-20 md:py-28 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight">The solution.</h2>
+                <p class="mt-3 text-slate-600 text-base max-w-xl mx-auto">
+                    Attach a secure NFC tag to what matters. If it’s found, it can be returned.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10">
+                <!-- Backpacks -->
+                <div class="group rounded-xl overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.10)] cursor-pointer">
+                    <img
+                        src="/images/Screenshot backpacks.png"
+                        alt="Backpacks with iFoundIt NFC tag"
+                        class="w-full h-64 md:h-72 object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    />
+                </div>
+                <!-- Phones -->
+                <div class="group rounded-xl overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.10)] cursor-pointer">
+                    <img
+                        src="/images/Screenshot Phones.png"
+                        alt="Phones with iFoundIt NFC tag"
+                        class="w-full h-64 md:h-72 object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    />
+                </div>
+                <!-- Keys -->
+                <div class="group rounded-xl overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.10)] cursor-pointer">
+                    <img
+                        src="/images/Screenshot keys.png"
+                        alt="Keys with iFoundIt NFC tag"
+                        class="w-full h-64 md:h-72 object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    />
+                </div>
+                <!-- Luggage -->
+                <div class="group rounded-xl overflow-hidden shadow-[0_6px_20px_rgba(0,0,0,0.06)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_10px_30px_rgba(0,0,0,0.10)] cursor-pointer">
+                    <img
+                        src="/images/Screenshot luggage.png"
+                        alt="Luggage with iFoundIt NFC tag"
+                        class="w-full h-64 md:h-72 object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                    />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reassurance Section -->
+    <section class="bg-white py-14">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center md:text-left border-t border-slate-100 pt-14">
+                <p class="text-sm text-slate-700">
+                    Works with iPhone & Android
+                </p>
+                <p class="text-sm text-slate-700">
+                    No battery required
+                </p>
+                <p class="text-sm text-slate-700">
+                    No subscription needed
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="bg-white py-20 pb-32 md:pb-20">
+        <div class="max-w-4xl mx-auto text-center px-6">
+            <h2 class="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight">
+                Protect what matters.
+            </h2>
+            <div class="mt-8">
+                <a href="/checkout.html">
+                    <button class="px-8 py-4 bg-black text-white rounded-full text-base font-medium transition-all duration-200 ease-out hover:bg-neutral-800 hover:scale-[1.01] tracking-wide">
+                        Buy Halo – £3.99
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-neutral-500 py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div>
+                    <p class="text-white font-medium">
+                        iFoundIt
+                    </p>
+                    <p class="mt-3 text-sm">
+                        NFC tags designed to make lost items returnable.
+                    </p>
+                </div>
+                <div class="text-sm space-y-2">
+                    <a href="/checkout.html" class="block hover:text-white transition-colors">Shop</a>
+                    <a href="#" class="block hover:text-white transition-colors">How it works</a>
+                    <a href="#" class="block hover:text-white transition-colors">Contact</a>
+                </div>
+                <div class="text-sm">
+                    <p>© 2026 iFoundIt</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Sticky CTA -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 p-4 md:hidden z-50">
+        <a href="/checkout.html">
+            <button class="w-full bg-blue-600 text-white py-4 rounded-2xl font-semibold text-lg shadow-lg">
+                Buy Halo – £3.99
+            </button>
+        </a>
     </div>
+
 </body>
-
 </html>
