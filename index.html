@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>iFoundit - Don't lose what matters</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="shortcut icon" href="/favicon.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,13 +37,9 @@
     <!-- Header -->
     <header class="fixed top-0 w-full bg-white z-50 border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
-            <div class="flex items-center gap-2 group cursor-pointer">
-                <div
-                    class="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg shadow-sm group-hover:scale-105 transition-transform">
-                    i
-                </div>
-                <span class="font-bold text-xl text-slate-800 tracking-tight">iFoundit</span>
-            </div>
+            <a href="/" class="flex items-center gap-2 group cursor-pointer">
+                <img src="/images/ifoundit-logo.png" alt="iFoundIt" style="height:32px;" />
+            </a>
 
             <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
                 <a href="/" class="text-slate-900">Home</a>
@@ -64,6 +63,9 @@
                 </h1>
                 <p class="text-lg text-neutral-600 max-w-md leading-relaxed">
                     Make your valuables returnable. No battery. No tracking. No app required.
+                </p>
+                <p style="margin-top:12px; font-size:18px; font-weight:500; color:#111;">
+                    From £3.99 per tag.
                 </p>
 
                 <div class="flex flex-wrap gap-4 items-center">
@@ -158,6 +160,13 @@
         </div>
     </section>
 
+    <!-- Loss Frame Reinforcement -->
+    <section style="padding:60px 20px; text-align:center; background:#f9fafb;">
+        <p style="font-size:20px; font-weight:600; color:#111;">
+            Replacing a lost item costs far more than preventing it.
+        </p>
+    </section>
+
     <!-- Reassurance Section -->
     <section class="bg-white py-14">
         <div class="max-w-5xl mx-auto px-6">
@@ -175,6 +184,13 @@
         </div>
     </section>
 
+    <!-- Decision Simplification Strip -->
+    <section style="padding:40px 20px; text-align:center;">
+        <p style="font-size:16px; color:#374151;">
+            Buy a single tag now. Add more later if you need them.
+        </p>
+    </section>
+
     <!-- Final CTA -->
     <section class="bg-white py-20 pb-32 md:pb-20">
         <div class="max-w-4xl mx-auto text-center px-6">
@@ -187,7 +203,7 @@
                 </p>
                 <a href="/checkout.html">
                     <button
-                        class="px-8 py-4 bg-black text-white rounded-full text-base font-medium transition-all duration-200 ease-out hover:bg-neutral-800 hover:scale-[1.01] tracking-wide">
+                        class="px-9 py-[18px] bg-black text-white rounded-full text-[18px] font-medium transition-all duration-200 ease-out hover:bg-neutral-800 hover:scale-[1.01] tracking-wide">
                         Buy Halo – £3.99
                     </button>
                 </a>
