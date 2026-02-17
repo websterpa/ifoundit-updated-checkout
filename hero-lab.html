@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hero Lab</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #ffffff;
+            color: #1e293b;
+        }
+
+        .hero-section {
+            min-height: 75vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to bottom, #ffffff 0%, #eceff3 100%);
+            padding-top: 4rem;
+            padding-bottom: 40px;
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 2;
+            max-width: 560px;
+        }
+
+        @media (min-width: 768px) {
+            .hero-section {
+                padding-top: 5rem;
+            }
+        }
+
+        .container {
+            max-width: 80rem;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+            width: 100%;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .text-block {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            padding-top: 6rem;
+            padding-bottom: 6rem;
+            position: relative;
+            z-index: 10;
+            max-width: 620px;
+        }
+
+        .headline {
+            font-weight: 600;
+            letter-spacing: -0.025em;
+            color: #0f172a;
+            margin: 0;
+            font-size: clamp(36px, 5vw, 56px);
+            line-height: 1.1;
+        }
+
+        .subtext {
+            font-size: 1.125rem;
+            color: #525252;
+            line-height: 1.625;
+            max-width: 460px;
+            margin: 0;
+        }
+
+        .price-clarity {
+            margin-top: 0.75rem;
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: #111;
+            margin-bottom: 0;
+        }
+
+        .cta-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: #000;
+            color: #fff;
+            border-radius: 9999px;
+            padding: 1rem 2rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-primary:hover {
+            background: #262626;
+        }
+
+        .micro-reassurance {
+            margin-top: 0.75rem;
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0;
+            width: 100%;
+        }
+
+        .btn-secondary {
+            border: 1px solid #d4d4d4;
+            color: #0f172a;
+            border-radius: 9999px;
+            padding: 0.75rem 1.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            background: transparent;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #f1f5f9;
+        }
+
+        .image-container {
+            position: relative;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .image-container {
+                justify-content: flex-end;
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+        }
+
+        .hero-image {
+            position: absolute;
+            right: -140px;
+            bottom: -40px;
+            width: 160%;
+            max-width: 1400px;
+            height: auto;
+            filter: drop-shadow(0px 120px 160px rgba(0, 0, 0, 0.30));
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-text">
+                <div class="text-block">
+                    <h1 class="headline">
+                        Lose it once.<br>Regret it forever.
+                    </h1>
+                    <p class="subtext">
+                        Make your valuables returnable. No battery. No tracking. No app required.
+                    </p>
+                    <p class="price-clarity">
+                        From £3.99 per tag.
+                    </p>
+
+                    <div class="cta-container">
+                        <a href="./checkout.html" style="text-decoration: none;">
+                            <button class="btn-primary">
+                                Protect my items
+                            </button>
+                        </a>
+                        <p class="micro-reassurance">
+                            No app required. No subscription. One simple tag.
+                        </p>
+                        <a href="#" style="text-decoration: none;">
+                            <button class="btn-secondary">
+                                See how it works
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <img src="./images/hero-image.png" alt="iFoundIt NFC tags attached to everyday items"
+                    class="hero-image">
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

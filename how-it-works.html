@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFoundit - How it works</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        .font-display {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .selection-blue::selection {
+            background-color: #dbeafe;
+        }
+    </style>
+</head>
+
+<body class="bg-white text-slate-800 selection-blue">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2 group cursor-pointer">
+                <img src="/images/ifoundit-logo.png" alt="iFoundIt" style="height:32px;" />
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="/" class="hover:text-slate-900 transition-colors">Home</a>
+                <a href="/tags.html" class="hover:text-slate-900 transition-colors">Tags</a>
+                <a href="/how-it-works.html" class="text-slate-900">How it works</a>
+                <a href="#" class="hover:text-slate-900 transition-colors">Why iFoundit?</a>
+            </nav>
+
+            <a href="/checkout.html" class="text-sm font-semibold text-slate-900 hover:text-blue-600 transition-colors">
+                Buy Now
+            </a>
+        </div>
+    </header>
+
+    <!-- Section 1: Hero Header -->
+    <section class="pt-32 pb-16 md:pt-40 md:pb-24 px-6 text-center">
+        <div class="max-w-[720px] mx-auto space-y-6">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-slate-900 tracking-tight leading-[1.1]">
+                How it works.
+            </h1>
+            <p class="text-lg md:text-xl text-neutral-600 font-normal">
+                Simple. Secure. No app required.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 2: 3 Step Process -->
+    <section class="pb-24 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
+                <!-- Step 1 -->
+                <div class="flex flex-col text-left md:items-start group">
+                    <span
+                        class="text-6xl md:text-7xl font-display font-semibold text-slate-100 mb-6 select-none group-hover:text-slate-200 transition-colors duration-300">01</span>
+                    <h3 class="text-2xl font-semibold text-slate-900 mb-3 tracking-tight">Attach your tag.</h3>
+                    <p class="text-slate-600 leading-relaxed text-lg max-w-sm">
+                        Attach one of our secure NFC tags to what matters.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="flex flex-col text-left md:items-start group">
+                    <span
+                        class="text-6xl md:text-7xl font-display font-semibold text-slate-100 mb-6 select-none group-hover:text-slate-200 transition-colors duration-300">02</span>
+                    <h3 class="text-2xl font-semibold text-slate-900 mb-3 tracking-tight">If it’s found.</h3>
+                    <p class="text-slate-600 leading-relaxed text-lg max-w-sm">
+                        The finder taps the tag with their phone and reports it via our site.
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="flex flex-col text-left md:items-start group">
+                    <span
+                        class="text-6xl md:text-7xl font-display font-semibold text-slate-100 mb-6 select-none group-hover:text-slate-200 transition-colors duration-300">03</span>
+                    <h3 class="text-2xl font-semibold text-slate-900 mb-3 tracking-tight">Get it back.</h3>
+                    <p class="text-slate-600 leading-relaxed text-lg max-w-sm">
+                        You’re notified. Arrange return. Reward the finder.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Benefit Block -->
+    <section class="bg-slate-50 py-20 border-t border-slate-100">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <p class="text-xl md:text-2xl font-medium text-slate-900 leading-relaxed">
+                No app. No battery. No tracking. Subscription included.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 4: Final CTA -->
+    <section class="bg-white py-20 pb-32 md:pb-20 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <a href="/checkout.html">
+                <button
+                    class="px-9 py-[18px] bg-black text-white rounded-full text-[18px] font-medium transition-all duration-200 ease-out hover:bg-neutral-800 hover:scale-[1.01] tracking-wide shadow-lg">
+                    Buy Halo – £3.99
+                </button>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-neutral-500 py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div>
+                    <p class="text-white font-medium">
+                        iFoundIt
+                    </p>
+                    <p class="mt-3 text-sm">
+                        NFC tags designed to make lost items returnable.
+                    </p>
+                </div>
+                <div class="text-sm space-y-2">
+                    <a href="/checkout.html" class="block hover:text-white transition-colors">Shop</a>
+                    <a href="/how-it-works.html" class="block hover:text-white transition-colors">How it works</a>
+                    <a href="#" class="block hover:text-white transition-colors">Contact</a>
+                </div>
+                <div class="text-sm">
+                    <p>© 2026 iFoundIt</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

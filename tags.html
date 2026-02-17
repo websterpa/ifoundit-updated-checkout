@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iFoundit - Choose your tag</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png">
+    <link rel="shortcut icon" href="/favicon.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1,
+        h2,
+        h3,
+        .font-display {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .selection-blue::selection {
+            background-color: #dbeafe;
+        }
+
+        .hero-min-height {
+            min-height: 88vh;
+        }
+
+        @media (min-width: 768px) {
+            .hero-min-height {
+                min-height: 78vh;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-white text-slate-800 selection-blue">
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2 group cursor-pointer">
+                <img src="/images/ifoundit-logo.png" alt="iFoundIt" style="height:32px;" />
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+                <a href="/" class="hover:text-slate-900 transition-colors">Home</a>
+                <a href="/tags.html" class="text-slate-900">Tags</a>
+                <a href="/how-it-works.html" class="hover:text-slate-900 transition-colors">How it works</a>
+                <a href="/why-ifoundit.html" class="hover:text-slate-900 transition-colors">Why iFoundit?</a>
+            </nav>
+
+            <a href="/checkout.html" class="text-sm font-semibold text-slate-900 hover:text-blue-600 transition-colors">
+                Buy Now
+            </a>
+        </div>
+    </header>
+
+    <!-- Section 2: Page Header -->
+    <section class="pt-32 pb-16 md:pt-40 md:pb-24 px-6 text-center">
+        <div class="max-w-[720px] mx-auto space-y-6">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-slate-900 tracking-tight leading-[1.1]">
+                Choose your tag.
+            </h1>
+            <p class="text-lg md:text-xl text-neutral-600 font-normal">
+                Make what matters returnable.
+            </p>
+        </div>
+    </section>
+
+    <!-- Section 3: Product Grid -->
+    <section class="pb-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
+                <!-- Halo -->
+                <div
+                    class="group bg-white rounded-xl p-6 border border-slate-100 shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.10)] transition-all duration-300 flex flex-col">
+                    <div
+                        class="w-full aspect-[4/3] bg-slate-50 rounded-lg mb-6 relative overflow-hidden flex items-center justify-center">
+                        <img src="/assets/tag-halo.png" alt="Halo Tag"
+                            class="h-[80%] w-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105" />
+                    </div>
+                    <div class="space-y-2 mb-6 text-left">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-semibold text-slate-900">Halo</h3>
+                            <span class="text-lg font-medium text-slate-900">£3.99</span>
+                        </div>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            For electronics and travel.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-4">
+                        <a href="/checkout.html"
+                            class="block w-full text-center bg-black text-white rounded-full py-3 hover:bg-neutral-800 font-medium transition-all text-sm">
+                            Buy now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Orbit -->
+                <div
+                    class="group bg-white rounded-xl p-6 border border-slate-100 shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.10)] transition-all duration-300 flex flex-col">
+                    <div
+                        class="w-full aspect-[4/3] bg-slate-50 rounded-lg mb-6 relative overflow-hidden flex items-center justify-center">
+                        <img src="/assets/tag-orbit.png" alt="Orbit Tag"
+                            class="h-[80%] w-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105" />
+                    </div>
+                    <div class="space-y-2 mb-6 text-left">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-semibold text-slate-900">Orbit</h3>
+                            <span class="text-lg font-medium text-slate-900">£4.99</span>
+                        </div>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            For keys and bags.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-4">
+                        <a href="/checkout.html"
+                            class="block w-full text-center bg-black text-white rounded-full py-3 hover:bg-neutral-800 font-medium transition-all text-sm">
+                            Buy now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Pulse -->
+                <div
+                    class="group bg-white rounded-xl p-6 border border-slate-100 shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.10)] transition-all duration-300 flex flex-col">
+                    <div
+                        class="w-full aspect-[4/3] bg-slate-50 rounded-lg mb-6 relative overflow-hidden flex items-center justify-center">
+                        <img src="/assets/tag-pulse.png" alt="Pulse Tag"
+                            class="h-[80%] w-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105" />
+                    </div>
+                    <div class="space-y-2 mb-6 text-left">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-semibold text-slate-900">Pulse</h3>
+                            <span class="text-lg font-medium text-slate-900">£4.99</span>
+                        </div>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            For wallets and purses.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-4">
+                        <a href="/checkout.html"
+                            class="block w-full text-center bg-black text-white rounded-full py-3 hover:bg-neutral-800 font-medium transition-all text-sm">
+                            Buy now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Echo -->
+                <div
+                    class="group bg-white rounded-xl p-6 border border-slate-100 shadow-[0_6px_20px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_30px_rgba(0,0,0,0.10)] transition-all duration-300 flex flex-col">
+                    <div
+                        class="w-full aspect-[4/3] bg-slate-50 rounded-lg mb-6 relative overflow-hidden flex items-center justify-center">
+                        <img src="/assets/tag-echo.png" alt="Echo Tag"
+                            class="h-[80%] w-auto object-contain transition-transform duration-500 ease-out group-hover:scale-105" />
+                    </div>
+                    <div class="space-y-2 mb-6 text-left">
+                        <div class="flex justify-between items-start">
+                            <h3 class="text-xl font-semibold text-slate-900">Echo</h3>
+                            <span class="text-lg font-medium text-slate-900">£5.99</span>
+                        </div>
+                        <p class="text-slate-500 text-sm leading-relaxed">
+                            For keys and pockets.
+                        </p>
+                    </div>
+                    <div class="mt-auto pt-4">
+                        <a href="/checkout.html"
+                            class="block w-full text-center bg-black text-white rounded-full py-3 hover:bg-neutral-800 font-medium transition-all text-sm">
+                            Buy now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Value Strip -->
+    <section class="bg-white py-14">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center border-t border-slate-100 pt-14">
+                <p style="font-size: 18px; font-weight: 600; color: #1f2937; letter-spacing: 0.2px;">
+                    Works with iPhone & Android
+                </p>
+                <p style="font-size: 18px; font-weight: 600; color: #1f2937; letter-spacing: 0.2px;">
+                    No battery required
+                </p>
+                <p style="font-size: 18px; font-weight: 600; color: #1f2937; letter-spacing: 0.2px;">
+                    No tracking involved
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Final CTA -->
+    <section class="bg-white py-20 pb-32 md:pb-20 text-center">
+        <div class="max-w-4xl mx-auto px-6 space-y-8">
+            <h2 class="text-2xl md:text-3xl font-semibold text-slate-900 tracking-tight">
+                Protect what matters.
+            </h2>
+            <div class="mt-8">
+                <a href="/checkout.html">
+                    <button
+                        class="px-9 py-[18px] bg-black text-white rounded-full text-[18px] font-medium transition-all duration-200 ease-out hover:bg-neutral-800 hover:scale-[1.01] tracking-wide shadow-lg">
+                        Buy Halo – £3.99
+                    </button>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-neutral-500 py-16">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <div>
+                    <p class="text-white font-medium">
+                        iFoundIt
+                    </p>
+                    <p class="mt-3 text-sm">
+                        NFC tags designed to make lost items returnable.
+                    </p>
+                </div>
+                <div class="text-sm space-y-2">
+                    <a href="/checkout.html" class="block hover:text-white transition-colors">Shop</a>
+                    <a href="/how-it-works.html" class="block hover:text-white transition-colors">How it works</a>
+                    <a href="#" class="block hover:text-white transition-colors">Contact</a>
+                </div>
+                <div class="text-sm">
+                    <p>© 2026 iFoundIt</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
