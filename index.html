@@ -55,13 +55,15 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative bg-white overflow-hidden pt-16 md:pt-20">
+    <section class="relative overflow-hidden pt-16 md:pt-20 flex items-center"
+        style="min-height: 90vh; background: linear-gradient(to bottom, #ffffff 0%, #f3f4f6 100%);">
         <div class="max-w-7xl mx-auto lg:h-[800px] grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6">
             <div class="space-y-8 py-24 md:py-32 relative z-10">
-                <h1 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 leading-[1.1]">
+                <h1 class="font-semibold tracking-tight text-slate-900"
+                    style="font-size: clamp(36px, 5vw, 56px); line-height: 1.1;">
                     Lose it once.<br />Regret it forever.
                 </h1>
-                <p class="text-lg text-neutral-600 max-w-md leading-relaxed">
+                <p class="text-lg text-neutral-600 leading-relaxed" style="max-width: 460px;">
                     Make your valuables returnable. No battery. No tracking. No app required.
                 </p>
                 <p style="margin-top:12px; font-size:18px; font-weight:500; color:#111;">
@@ -71,7 +73,8 @@
                 <div class="flex flex-wrap gap-4 items-center">
                     <a href="/checkout.html">
                         <button
-                            class="bg-black text-white rounded-full px-8 py-4 hover:bg-neutral-800 font-semibold transition-all">
+                            class="bg-black text-white rounded-full px-8 py-4 hover:bg-neutral-800 font-semibold transition-all"
+                            style="box-shadow: 0px 10px 25px rgba(0,0,0,0.15);">
                             Protect my items
                         </button>
                     </a>
@@ -93,8 +96,11 @@
                     class="absolute bottom-[10%] right-[10%] w-[60%] h-[40px] bg-black/15 rounded-full blur-3xl pointer-events-none">
                 </div>
 
-                <img src="/images/hero-image.png?v=2" alt="iFoundIt NFC tags attached to everyday items"
-                    class="relative w-[135%] md:w-[150%] md:-mr-10 max-w-none object-contain transition-transform duration-700 ease-out hover:scale-[1.02]" />
+                <div class="relative md:right-[-40px] right-0">
+                    <img src="/images/hero-image.png?v=2" alt="iFoundIt NFC tags attached to everyday items"
+                        style="max-width: 720px; width: 100%; height: auto; transform: translateY(10px); filter: drop-shadow(0px 40px 60px rgba(0,0,0,0.15));"
+                        class="lg:max-w-[820px] transition-transform duration-700 ease-out hover:scale-[1.02]" />
+                </div>
             </div>
         </div>
     </section>
